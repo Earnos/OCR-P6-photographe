@@ -1,7 +1,7 @@
 /**
  * Fecth photographers
  * with local json data
- * @returns {JSON} photographersData - stringify json's data
+ * @returns {Promise} photographersData - stringify json's data
  */
 
 async function getPhotographers() {
@@ -11,7 +11,9 @@ async function getPhotographers() {
     .then((response) => JSON.stringify(response))
     .catch((error) => error)
 
-  // console.log(photographersData)
+  // local data storage photographers
+  localStorage.setItem("storage", JSON.stringify(photographersData))
+
   return JSON.parse(photographersData)
 }
 
@@ -32,3 +34,11 @@ async function init() {
 }
 
 init()
+
+// const linkStorage = document.getElementsByTagName("a")
+// for (let i = 0; i < linkStorage.length; i++) {
+//   console.log(linkStorage)
+//   linkStorage[i].addEventListener("click", () => {
+//     localStorage.setItem(`photographer.html`, photographersData)
+//   })
+// }

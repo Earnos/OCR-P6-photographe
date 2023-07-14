@@ -3,6 +3,7 @@
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  margin-bottom: 7%;
 }
 
 header {
@@ -41,6 +42,7 @@ h1 {
 .photographer_section article h2 {
   color: #d3573c;
   font-size: 36px;
+  margin-bottom: 0;
 }
 
 .photographer_section article img {
@@ -48,5 +50,28 @@ h1 {
   width: 200px;
   border-radius: 100%;
   object-fit: cover;
-  cursor: pointer;
+}
+
+.photographer_section article h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #d3573c;
+  margin: 5px 0 0 0;
+}
+
+.photographer_section article :nth-child(4) {
+  margin: 5px 5px 5px 0;
+  font-size: 0.8em;
+  font-weight: 300;
+}
+
+.photographer_section article :nth-child(5) {
+  font-size: 0.8em;
+  color: grey;
+  margin: 5px;
+}
+
+.photographer_section article > a {
+  text-align: center;
+  text-decoration: none;
 }

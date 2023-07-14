@@ -1,1 +1,2 @@
-//Mettre le code JavaScript lié à la page photographer.html
+// get data by photographers's id
+// localStorage.getItem("storage")
