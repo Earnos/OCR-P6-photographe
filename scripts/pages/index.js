@@ -6,13 +6,11 @@
 
 async function getPhotographers() {
   const url = "../../data/photographers.json"
+
   let photographersData = await fetch(url)
     .then((response) => response.json())
     .then((response) => JSON.stringify(response))
     .catch((error) => error)
-
-  // local data storage photographers
-  localStorage.setItem("storage", JSON.stringify(photographersData))
 
   return JSON.parse(photographersData)
 }
@@ -34,11 +32,3 @@ async function init() {
 }
 
 init()
-
-// const linkStorage = document.getElementsByTagName("a")
-// for (let i = 0; i < linkStorage.length; i++) {
-//   console.log(linkStorage)
-//   linkStorage[i].addEventListener("click", () => {
-//     localStorage.setItem(`photographer.html`, photographersData)
-//   })
-// }

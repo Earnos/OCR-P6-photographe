@@ -21,7 +21,7 @@ function photographerTemplate(data) {
 
     // create photographer's link
     const photoLink = document.createElement("a")
-    photoLink.setAttribute("href", `photographer.html#${id}`)
+    photoLink.setAttribute("href", `photographer.html?photographer-id=${id}`)
     //photoLink.id = `${id}`
     photoLink.appendChild(img)
     photoLink.appendChild(h2)
