@@ -33,6 +33,30 @@ function photographerTemplate(data) {
 
     return article
   }
+  function getPhotographHeaderDOM() {
+    const photographProfil = document.querySelector(".photograph-header")
+    const photographerInfoContent = document.createElement("div")
+
+    const h2 = document.createElement("h2")
+    h2.textContent = name
+    console.log(photographers[0])
+    const locality = document.createElement("h3")
+    locality.textContent = city + "," + " " + country
+    const description = document.createElement("p")
+    description.textContent = tagline
+
+    photographProfil.appendChild(photographerInfoContent)
+    photographerInfoContent.appendChild(h2, locality, description)
+  }
+  function getUrlId() {
+    urlLocation = document.location
+    const urlId = new URL(urlLocation)
+    const searchParams = urlId.searchParams
+    searchParams.get("search")
+    const ID = searchParams.get("photographer-id")
+    return ID
+  }
+
   // name & picture inutile ?
-  return { name, picture, getUserCardDOM }
+  return { name, picture, getUserCardDOM, getPhotographHeaderDOM }
 }

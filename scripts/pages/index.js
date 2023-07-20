@@ -15,6 +15,8 @@ async function getPhotographers() {
   return JSON.parse(photographersData)
 }
 
+export { getPhotographers }
+
 async function displayData(photographersData) {
   const photographersSection = document.querySelector(".photographer_section")
 

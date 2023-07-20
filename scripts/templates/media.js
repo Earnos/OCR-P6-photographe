@@ -31,7 +31,7 @@ function mediaTemplate(data) {
     //   article.appendChild(description)
     //   article.appendChild(priceByDay)
 
-    return article
+    return
   }
   // name & picture inutile ?
   return { name, picture, getMediasDOM }
