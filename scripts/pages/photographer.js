@@ -1,23 +1,48 @@
-import { getPhotographers } from "./index"
+// get id from url
+urlLocation = document.location
+const urlId = new URL(urlLocation)
+const searchParams = urlId.searchParams
+searchParams.get("search")
+const ID = searchParams.get("photographer-id")
+
+/**
+ * Fecth photographers
+ * with local json data
+ * @returns {Promise} photographersData - stringify json's data
+ */
+async function getPhotographers() {
+  const url = "../../data/photographers.json"
+
+  let photographersData = await fetch(url)
+  const res = await photographersData.json()
+  //.then((response) => response.json())
+  //.then((response) => (res = JSON.stringify(response)))
+  //.catch((error) => error)
+  res.photographers.forEach((photographer) => {
+    if (photographer.id == ID) {
+      console.log(photographer.id)
+      return photographer
+    }
+  })
+  // console.log(photographersData)
+  //return JSON.parse(photographersData)
+}
 
 async function displayPhotographersData(photographersData) {
   const photographProfil = document.querySelector(".photograph-header")
 
   photographersData.forEach((photographer) => {
-    if (photographer.id == getUrlId) {
-      const photographerModel = onePhotographTemplate(photographer)
-      const userProfilDOM = photographerModel.getPhotographHeaderDOM()
-      photographProfil.appendChild(userProfilDOM)
-    }
+    const photographerModel = onePhotographTemplate(photographer)
+    const userProfilDOM = photographerModel.getPhotographHeaderDOM()
+
+    photographProfil.appendChild(userProfilDOM)
   })
 }
-
 async function init() {
-  // Récupère les datas des photographes
-  const { photograph } = await getPhotographers()
-  displayPhotographersData(photograph)
+  // Récupère les datas d'un photographe
+  const { photographer } = await getPhotographers()
+  displayPhotographersData(photographer)
 }
-
 init()
 
 // get url's ID

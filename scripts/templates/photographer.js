@@ -2,7 +2,10 @@ function photographerTemplate(data) {
   const { name, portrait, city, country, tagline, price, id } = data
 
   const picture = `assets/photographers/${portrait}`
-
+  /**
+   * main page photographers card
+   * @returns {HTMLElement}
+   */
   function getUserCardDOM() {
     const article = document.createElement("article")
     const img = document.createElement("img")
@@ -33,6 +36,7 @@ function photographerTemplate(data) {
 
     return article
   }
+
   function getPhotographHeaderDOM() {
     const photographProfil = document.querySelector(".photograph-header")
     const photographerInfoContent = document.createElement("div")
@@ -47,7 +51,10 @@ function photographerTemplate(data) {
 
     photographProfil.appendChild(photographerInfoContent)
     photographerInfoContent.appendChild(h2, locality, description)
+
+    return photographerInfoContent
   }
+
   function getUrlId() {
     urlLocation = document.location
     const urlId = new URL(urlLocation)
