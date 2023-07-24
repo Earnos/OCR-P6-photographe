@@ -1,38 +1,28 @@
 function mediaTemplate(data) {
-  const { name, portrait, city, country, tagline, price, id } = data
+  const { title, image, likes, date, price, photographerId, id } = data
 
-  const picture = `assets/photographers/${portrait}`
+  const mediaPhoto = `assets/images/${image}`
 
   function getMediasDOM() {
-    //   const article = document.createElement("article")
-    //   const img = document.createElement("img")
-    //   img.setAttribute("src", picture)
-    //   img.setAttribute("alt", name)
-    //   const h2 = document.createElement("h2")
-    //   h2.textContent = name
+    const section = document.createElement("section")
+    const imageligthBoxLink = document.createElement("a")
+    const img = document.createElement("img")
+    const main = document.getElementById("main")
 
-    //   // temporary JSON's other data
-    //   const locality = document.createElement("h3")
-    //   locality.textContent = city + "," + " " + country
-    //   const description = document.createElement("p")
-    //   description.textContent = tagline
-    //   const priceByDay = document.createElement("p")
-    //   priceByDay.textContent = price + "€/jour"
+    img.setAttribute("src", mediaPhoto)
+    img.setAttribute("alt", title)
 
-    //   // create photographer's link
-    //   const photoLink = document.createElement("a")
-    //   photoLink.setAttribute("href", `photographer.html?photographer-id=${id}`)
-    //   //photoLink.id = `${id}`
-    //   photoLink.appendChild(img)
-    //   photoLink.appendChild(h2)
+    const h2 = document.createElement("h2")
+    h2.textContent = title
+    const priceByDay = document.createElement("p")
+    priceByDay.textContent = price + "€/jour"
 
-    //   article.appendChild(photoLink)
-    //   article.appendChild(locality)
-    //   article.appendChild(description)
-    //   article.appendChild(priceByDay)
+    imageligthBoxLink.appendChild(img)
+    section.appendChild(imageligthBoxLink)
+    main.appendChild("section")
 
-    return
+    return section
   }
   // name & picture inutile ?
-  return { name, picture, getMediasDOM }
+  return { getMediasDOM }
 }

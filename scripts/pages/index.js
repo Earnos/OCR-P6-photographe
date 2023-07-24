@@ -3,7 +3,6 @@
  * with local json data
  * @returns {Promise} photographersData - stringify json's data
  */
-
 async function getPhotographers() {
   const url = "../../data/photographers.json"
 
@@ -14,12 +13,15 @@ async function getPhotographers() {
 
   return JSON.parse(photographersData)
 }
-
+/**
+ * Display Data
+ * @returns {HTMLElement}
+ */
 async function displayData(photographersData) {
   const photographersSection = document.querySelector(".photographer_section")
 
   photographersData.forEach((photographer) => {
-    const photographerModel = photographerTemplate(photographer)
+    const photographerModel = photographerFactory(photographer)
     const userCardDOM = photographerModel.getUserCardDOM()
 
     photographersSection.appendChild(userCardDOM)
