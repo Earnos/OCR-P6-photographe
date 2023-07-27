@@ -55,8 +55,10 @@ function photographerFactory(data) {
     img.setAttribute("alt", `Profil's picture of ${name}`)
 
     photographProfil.appendChild(photographerInfoContent)
-    photographerInfoContent.appendChild(h2, locality, description)
-    photographerInfoContent.appendChild(img)
+    photographerInfoContent.appendChild(h2)
+    photographerInfoContent.appendChild(locality)
+    photographerInfoContent.appendChild(description)
+    photographProfil.appendChild(img)
 
     console.log(photographerInfoContent)
     return photographerInfoContent
