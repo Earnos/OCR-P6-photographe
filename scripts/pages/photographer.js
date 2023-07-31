@@ -1,7 +1,6 @@
 // get id from url
 urlLocation = document.location
 const urlId = new URL(urlLocation)
-console.log(urlLocation.href)
 const searchParams = urlId.searchParams
 searchParams.get("search")
 const ID = searchParams.get("photographer-id")
@@ -22,33 +21,40 @@ async function getPhotographers() {
       p = photographer
     }
   })
-  return p
+
+  // Medias by current ID
+  let m
+  const findMediaById = res.media.filter((media) => {
+    if (media.photographerId == ID) {
+      return (m = media)
+    }
+  })
+  console.log(findMediaById)
+  return { photographer: p, media: m }
 }
 
 async function displayPhotographersData(photographersData) {
   const photographProfil = document.querySelector(".photograph-header")
-
-  console.log(photographersData)
   const photographerModel = photographerFactory(photographersData)
   const userProfilDOM = photographerModel.getPhotographHeaderDOM()
   photographProfil.appendChild(userProfilDOM)
 }
 
-// async function displayPhotographerMedia(photographersData) {
-//   const photographProfil = document.querySelector(".photograph-header")
-
-//   photographersData.forEach((photographer) => {
-//     const photographerModel = onePhotographTemplate(photographer)
-//     const userProfilDOM = photographerModel.getPhotographHeaderDOM()
-
-//     photographProfil.appendChild(userProfilDOM)
-//   })
-// }
+async function displayPhotographerMedia(allDatas) {
+  const photosContainer = document.querySelector(".main")
+  // photographersData.forEach((photographersData) => {
+  const photographerModel = mediaTemplate(allDatas)
+  console.log(allDatas)
+  const userProfilDOM = photographerModel.getMediasDom()
+  photosContainer.appendChild(userProfilDOM)
+  // })
+}
 
 async function init() {
-  // Récupère les datas d'un photographe
-  const photographers = await getPhotographers()
-  console.log(photographers)
-  displayPhotographersData(photographers)
+  //Get photographer's data & media
+  const { photographer, media } = await getPhotographers()
+  //const photographers = await getPhotographers()
+  displayPhotographersData(photographer)
+  displayPhotographerMedia([photographer, media])
 }
 init()

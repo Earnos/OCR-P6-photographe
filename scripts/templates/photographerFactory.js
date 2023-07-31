@@ -60,7 +60,6 @@ function photographerFactory(data) {
     photographerInfoContent.appendChild(description)
     photographProfil.appendChild(img)
 
-    console.log(photographerInfoContent)
     return photographerInfoContent
   }
 
