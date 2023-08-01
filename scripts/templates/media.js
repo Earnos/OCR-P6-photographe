@@ -1,7 +1,9 @@
 function mediaTemplate(data) {
-  const { title, image, likes, date, price } = data[1]
+  // photographer's data
   const { name, id } = data[0]
-  console.log(data)
+  // media's data
+  // const { title, image, likes, date, price } = data[1]
+
   // transform photographer's name same as photo name's folders
   const arr = name
   const splitName = arr.split(" ")
@@ -9,40 +11,51 @@ function mediaTemplate(data) {
   const folderName = splitName.join(" ")
   photoByFolderName = folderName.replaceAll("-", " ")
 
-  const getPictures = data.filter((datas) => {
-    if (datas.photographerId === id) {
-      return (d = datas)
-    }
-  })
-  console.log(getPictures)
+  let article
+  const photosContainer = document.querySelector("#main")
+  const mediaContainer = document.createElement("div")
+  mediaContainer.setAttribute("id", "media-container")
+  photosContainer.appendChild(mediaContainer)
 
-  const mediaPhoto = `assets/images/${photoByFolderName}/${image}`
-  console.log(mediaPhoto)
+  data[1].forEach((media) => {
+    article = getMediasDOM(media)
+    mediaContainer.appendChild(article)
+  })
 
   /**
    * photographer's page media DOM element creation
    * @returns {HTMLDivElement}
    */
-  function getMediasDOM() {
-    const photosContainer = document.querySelector(".main")
-    const section = document.createElement("div")
+  function getMediasDOM(media) {
+    //console.log(media)
+    const article = document.createElement("article")
     const imageligthBoxLink = document.createElement("a")
     const img = document.createElement("img")
+    const infosMedia = document.createElement("div")
 
+    article.setAttribute("class", "media-article")
+    infosMedia.setAttribute("class", "infos-media")
+
+    const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
+    img.setAttribute("class", "media-picture")
     img.setAttribute("src", mediaPhoto)
-    img.setAttribute("alt", title)
+    img.setAttribute("alt", media.title)
 
-    const h2 = document.createElement("h2")
-    h2.textContent = title
-    const priceByDay = document.createElement("p")
-    priceByDay.textContent = price + "€/jour"
+    const photoTitle = document.createElement("p")
+    photoTitle.textContent = media.title
+    photoTitle.setAttribute("class", "media-photo-title")
+
+    const likes = document.createElement("p")
+    heartEmoji = "U+2764 U+fe0f"
+    likes.textContent = media.likes + " " + "❤️"
 
     imageligthBoxLink.appendChild(img)
-    section.appendChild(imageligthBoxLink)
-    photosContainer.appendChild(section)
+    article.appendChild(imageligthBoxLink)
+    infosMedia.appendChild(photoTitle)
+    article.appendChild(infosMedia)
+    infosMedia.appendChild(likes)
 
-    return section
+    return article
   }
-  // name & picture inutile ?
   return { getMediasDOM }
 }

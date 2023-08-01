@@ -29,8 +29,7 @@ async function getPhotographers() {
       return (m = media)
     }
   })
-  console.log(findMediaById)
-  return { photographer: p, media: m }
+  return { photographer: p, media: findMediaById }
 }
 
 async function displayPhotographersData(photographersData) {
@@ -41,13 +40,8 @@ async function displayPhotographersData(photographersData) {
 }
 
 async function displayPhotographerMedia(allDatas) {
-  const photosContainer = document.querySelector(".main")
-  // photographersData.forEach((photographersData) => {
-  const photographerModel = mediaTemplate(allDatas)
-  console.log(allDatas)
-  const userProfilDOM = photographerModel.getMediasDom()
-  photosContainer.appendChild(userProfilDOM)
-  // })
+  document.querySelector(".main")
+  mediaTemplate(allDatas)
 }
 
 async function init() {

@@ -1,3 +1,7 @@
+body {
+  z-index: -1;
+}
+
 #contact_modal {
   display: none;
 }
@@ -86,6 +90,7 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 10;
 }
 
 form label {
@@ -106,4 +111,33 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+/* main media pictures */
+
+#media-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.media-article {
+  height: 350px;
+  width: 350px;
+}
+
+.media-picture {
+  height: 85%;
+  width: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+
+.infos-media {
+  color: #901c1c;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
 }
