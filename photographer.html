@@ -23,7 +23,7 @@
           alt="picture fishEye logo"
       /></a>
     </header>
-    <main id="main">
+    <main id="main" class="photographer-main">
       <div class="photograph-header">
         <button
           type="button"
@@ -82,7 +82,12 @@
               name="message"
             />
           </div>
-          <button aria-label="Send" type="button" class="contact_button">
+          <button
+            aria-label="Send"
+            type="button"
+            onclick="submitForm()"
+            class="contact_button"
+          >
             Envoyer
           </button>
         </form>
@@ -92,5 +97,6 @@
     <script src="/scripts/templates/photographerFactory.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/lightbox.js"></script>
   </body>
 </html>

@@ -8,6 +8,9 @@ function closeModal() {
   modal.style.display = "none"
 }
 
+function submitForm() {
+  console.log("message envoyé !")
+}
 // function formContactName() {
 //   //dynamic photographer'sname display
 //   const formName = document.querySelector(".modal > header")

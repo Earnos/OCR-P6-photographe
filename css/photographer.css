@@ -1,15 +1,17 @@
-body {
+.photographer-main {
+  position: absolute;
   z-index: -1;
 }
 
 #contact_modal {
   display: none;
+  z-index: 10;
 }
 
 .photograph-header {
   background-color: #fafafa;
   height: 300px;
-  margin: 0 100px;
+  margin: 2% 7% 5% 7%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -61,13 +63,16 @@ body {
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 35px;
   margin: auto;
+  position: fixed;
+  margin-left: 35%;
+  margin-top: 2%;
 }
 
 .modal header {
@@ -77,12 +82,13 @@ body {
 
 .modal header img {
   cursor: pointer;
+  margin-bottom: 3em;
 }
 
 .modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
+  font-size: 3.3em;
+  font-weight: 500;
+  margin-top: 0;
 }
 
 form {
@@ -90,7 +96,6 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  z-index: 10;
 }
 
 form label {
@@ -107,10 +112,16 @@ form div {
 }
 
 form input {
-  width: 100%;
-  height: 68px;
+  width: 95%;
+  height: 50px;
   border: none;
   border-radius: 5px;
+  padding-left: 1em;
+  font-size: 1.3em;
+}
+
+form input:nth-child(8) {
+  height: 6em;
 }
 
 /* main media pictures */
@@ -119,12 +130,14 @@ form input {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 8rem;
+  margin-top: 2em;
+  margin: 0 4% 0 4%;
 }
 
 .media-article {
-  height: 350px;
-  width: 350px;
+  height: 450px;
+  width: 450px;
 }
 
 .media-picture {
@@ -133,6 +146,13 @@ form input {
   object-fit: cover;
   top: 0;
   left: 0;
+  border-radius: 2%;
+}
+
+.media-video {
+  height: 85%;
+  width: 100%;
+  border-radius: 2%;
 }
 
 .infos-media {
