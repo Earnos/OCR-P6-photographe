@@ -16,11 +16,18 @@ function mediaTemplate(data) {
   const mediaContainer = document.createElement("div")
   mediaContainer.setAttribute("id", "media-container")
   photosContainer.appendChild(mediaContainer)
+  // const headerTitle = document.querySelector(".modal  h2")
 
+  // console.log(headerTitle)
+  // headerTitle.innerHTML = "Contactez-moi" + "\n" + name
+
+  // Get dynamic name for form title
+  getFormNameTitle(name)
+
+  // display dom element via this template
   data[1].forEach((media) => {
     article = getMediasDOM(media)
     mediaContainer.appendChild(article)
-    //console.log(media)
   })
 
   // function getPicturesOrVideo(media) {
@@ -70,7 +77,7 @@ function mediaTemplate(data) {
     article.setAttribute("class", "media-article")
     infosMedia.setAttribute("class", "infos-media")
 
-    const mediaVideo = `asssets/images/${photoByFolderName}/${media.video}`
+    const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
     const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
     //console.log(mediaVideo)
     //console.log(mediaPhoto)

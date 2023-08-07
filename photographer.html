@@ -51,43 +51,42 @@
             onclick="closeModal()"
           />
         </header>
-        <form>
+        <form action="" id="form" onsubmit="getFormValues(e)">
           <div>
             <label for="first-name">Prénom</label>
             <input
               aria-label="First name"
               aria-labelledby="3"
-              title="btn"
+              title="Prénom"
               name="first-name"
             />
             <label for="last-name">Nom</label>
             <input
               aria-label="Last Name"
               aria-labelledby="5"
-              title="btn"
+              title="Nom"
               name="last-name"
             />
             <label for="email">Email</label>
             <input
               aria-label="Email"
               aria-labelledby="7"
-              title="btn"
+              title="e-mail"
               name="email"
             />
             <label for="message">Votre message</label>
-            <input
+            <textarea
+              minlength="20"
+              maxlength="200"
               aria-label="Your message"
               aria-labelledby="9"
-              title="btn"
+              title="message"
               name="message"
-            />
+              required
+            >
+            </textarea>
           </div>
-          <button
-            aria-label="Send"
-            type="button"
-            onclick="submitForm()"
-            class="contact_button"
-          >
+          <button aria-label="Send" type="submit" class="contact_button">
             Envoyer
           </button>
         </form>

@@ -86,9 +86,9 @@
 }
 
 .modal header h2 {
-  font-size: 3.3em;
+  font-size: 3em;
   font-weight: 500;
-  margin-top: 0;
+  margin: 3%;
 }
 
 form {
@@ -109,6 +109,7 @@ form div {
   width: 100%;
   align-items: self-start;
   margin-bottom: 26px;
+  margin-top: 8%;
 }
 
 form input {
@@ -120,8 +121,15 @@ form input {
   font-size: 1.3em;
 }
 
-form input:nth-child(8) {
+textarea {
   height: 6em;
+  width: 93%;
+  font-size: 1.6em;
+  font-weight: 500;
+  padding: 1em;
+  border: none;
+  border-radius: 2%;
+  resize: none;
 }
 
 /* main media pictures */
@@ -153,6 +161,8 @@ form input:nth-child(8) {
   height: 85%;
   width: 100%;
   border-radius: 2%;
+  top: 0;
+  left: 0;
 }
 
 .infos-media {
