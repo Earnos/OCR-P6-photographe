@@ -2,7 +2,7 @@ function mediaTemplate(data) {
   // photographer's data
   const { name, id } = data[0]
   // media's data
-  const { title, image, likes, date, price } = data[1]
+  const [{ title, image, likes, date, price }] = data[1]
 
   // transform photographer's name same as photo name's folders
   const arr = name
@@ -16,12 +16,8 @@ function mediaTemplate(data) {
   const mediaContainer = document.createElement("div")
   mediaContainer.setAttribute("id", "media-container")
   photosContainer.appendChild(mediaContainer)
-  // const headerTitle = document.querySelector(".modal  h2")
 
-  // console.log(headerTitle)
-  // headerTitle.innerHTML = "Contactez-moi" + "\n" + name
-
-  // Get dynamic name for form title
+  // Get dynamic name for form title function
   getFormNameTitle(name)
 
   // display dom element via this template
@@ -29,34 +25,6 @@ function mediaTemplate(data) {
     article = getMediasDOM(media)
     mediaContainer.appendChild(article)
   })
-
-  // function getPicturesOrVideo(media) {
-  //   const mediaVideo = `asssets/images/${photoByFolderName}/${data[1].video}`
-  //   const mediaPhoto = `assets/images/${photoByFolderName}/${data[1].image}`
-  //   const img = document.createElement("img")
-  //   const hasImageProperty = data[1].hasOwnProperty("image")
-  //   const hasVideoProperty = data[1].hasOwnProperty("video")
-
-  //   console.log(hasImageProperty)
-
-  //   if (data[1].image) {
-  //     img.setAttribute("src", mediaPhoto)
-  //   } else {
-  //     img.setAttribute("src", mediaVideo)
-  //   }
-
-  //   // hasImageProperty
-  //   //   ? img.setAttribute("src", mediaPhoto)
-  //   //   : img.setAttribute("src", mediaVideo)
-
-  //   // if (hasImageProperty) {
-  //   //   img.setAttribute("src", mediaPhoto)
-  //   // } else if (hasVideoProperty) {
-  //   //   img.setAttribute("src", mediaVideo)
-  //   // } else {
-  //   //   console.error("erreur de chargement des données")
-  //   // }
-  // }
 
   /**
    * photographer's page media DOM element creation
@@ -81,6 +49,7 @@ function mediaTemplate(data) {
     const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
     //console.log(mediaVideo)
     //console.log(mediaPhoto)
+
     img.setAttribute("class", "media-picture")
     //img.setAttribute("src", mediaPhoto)
     img.setAttribute("alt", media.title)
@@ -112,6 +81,22 @@ function mediaTemplate(data) {
     // total of likes an price display onpage's text ticket
     const ticketInfos = document.createElement("div")
     ticketInfos.setAttribute("class", "infos-ticket")
+
+    let values = media.likes
+    const totalValues = Object.values(values)
+    let sum = 0
+    sum += values
+    console.log(typeof values)
+
+    //console.log(values.length)
+    //const ticketInfosArray = Object.values(values)
+    //console.log(ticketInfosArray)
+
+    ticketInfos.textContent += media.likes + " " + "❤️"
+    ticketInfos.textContent += media.price + " " + "/" + " " + "jour"
+    const photographerMain = document.querySelector(".photographer-main")
+    photographerMain.appendChild(ticketInfos)
+
     // const ecahLikes = media.image
     //console.log(media.likes)
     // let sum = 0
@@ -135,11 +120,6 @@ function mediaTemplate(data) {
     // }
     // console.log(sum)
 
-    ticketInfos.textContent += media.likes + " " + "❤️"
-    ticketInfos.textContent += media.price + " " + "/" + " " + "jour"
-    const photographerMain = document.querySelector(".photographer-main")
-    photographerMain.appendChild(ticketInfos)
-
     // Likes on media card
     const likes = document.createElement("p")
     heartEmoji = "U+2764 U+fe0f"
@@ -151,9 +131,31 @@ function mediaTemplate(data) {
     article.appendChild(infosMedia)
     infosMedia.appendChild(likes)
 
-    //getPicturesOrVideo(media)
-
     return article
   }
   return { getMediasDOM }
 }
+
+// function getPicsOrVideo(media) {
+//   // Display images or videos
+//   const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
+//   const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
+//   const hasImageProperty = media.hasOwnProperty("image")
+//   const hasVideoProperty = media.hasOwnProperty("video")
+
+//   if (hasImageProperty) {
+//     img.setAttribute("src", mediaPhoto)
+//   } else if (hasVideoProperty) {
+//     video.src = mediaVideo
+//     article.appendChild(video)
+//     video.pause()
+//     video.setAttribute("type", "video/mp4")
+//     video.preload = "auto"
+//     video.autoplay = false
+//     video.controls = true
+//     video.muted = false
+//     imageligthBoxLink.style.display = "none"
+//   } else {
+//     return null
+//   }
+// }

@@ -50,5 +50,6 @@ async function init() {
   //const photographers = await getPhotographers()
   displayPhotographersData(photographer)
   displayPhotographerMedia([photographer, media])
+  displayLightbox()
 }
 init()
