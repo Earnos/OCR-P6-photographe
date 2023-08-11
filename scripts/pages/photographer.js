@@ -44,12 +44,18 @@ async function displayPhotographerMedia(allDatas) {
   mediaTemplate(allDatas)
 }
 
+// async function displayLightbox(allDatas, e) {
+//   document.querySelector(".main")
+//   new Lightbox(allDatas)
+// }
+
 async function init() {
   //Get photographer's data & media
   const { photographer, media } = await getPhotographers()
   //const photographers = await getPhotographers()
   displayPhotographersData(photographer)
   displayPhotographerMedia([photographer, media])
-  displayLightbox()
+  new Lightbox([photographer, media])
+  //displayLightbox([photographer, media])
 }
 init()

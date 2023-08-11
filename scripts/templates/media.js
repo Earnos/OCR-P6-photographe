@@ -38,20 +38,17 @@ function mediaTemplate(data) {
     const video = document.createElement("video")
     const infosMedia = document.createElement("div")
 
+    const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
+    const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
+
     video.setAttribute("class", "media-video")
     imageligthBoxLink.setAttribute("class", "media-link")
-    imageligthBoxLink.setAttribute("href", " ")
+    imageligthBoxLink.setAttribute("href", " ") //`${mediaPhoto}`
     imageligthBoxLink.setAttribute("onclick", "displayLightbox()")
     article.setAttribute("class", "media-article")
     infosMedia.setAttribute("class", "infos-media")
 
-    const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
-    const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
-    //console.log(mediaVideo)
-    //console.log(mediaPhoto)
-
     img.setAttribute("class", "media-picture")
-    //img.setAttribute("src", mediaPhoto)
     img.setAttribute("alt", media.title)
     const photoTitle = document.createElement("p")
     photoTitle.textContent = media.title
@@ -64,7 +61,6 @@ function mediaTemplate(data) {
     if (hasImageProperty) {
       img.setAttribute("src", mediaPhoto)
     } else if (hasVideoProperty) {
-      //video.setAttribute("src", mediaVideo)
       video.src = mediaVideo
       article.appendChild(video)
       video.pause()
