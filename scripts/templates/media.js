@@ -19,6 +19,8 @@ function mediaTemplate(data) {
 
   // Get dynamic name for form title function
   getFormNameTitle(name)
+  // Function for filter creation
+  getDropDownMenu()
 
   // display dom element via this template
   data[1].forEach((media) => {
