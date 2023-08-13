@@ -203,7 +203,7 @@ textarea {
   border-radius: 0.5em;
   color: #ffffff;
   position: absolute;
-  top: 3em;
+  top: 2.4em;
   left: 50%;
   width: 100%;
   transform: translateX(-50%);
@@ -286,4 +286,22 @@ textarea {
   font-weight: 500;
   display: flex;
   justify-content: space-between;
+}
+
+#main .infos-ticket {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  position: fixed;
+  width: 376px;
+  height: 50px;
+  border-radius: 5px;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  margin-right: 7em;
+  background: #db8876;
 }

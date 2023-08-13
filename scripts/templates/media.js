@@ -76,51 +76,8 @@ function mediaTemplate(data) {
       return null
     }
 
-    // total of likes an price display onpage's text ticket
-    const ticketInfos = document.createElement("div")
-    ticketInfos.setAttribute("class", "infos-ticket")
-
-    let values = media.likes
-    const totalValues = Object.values(values)
-    let sum = 0
-    sum += values
-    console.log(typeof values)
-
-    //console.log(values.length)
-    //const ticketInfosArray = Object.values(values)
-    //console.log(ticketInfosArray)
-
-    ticketInfos.textContent += media.likes + " " + "❤️"
-    ticketInfos.textContent += media.price + " " + "/" + " " + "jour"
-    const photographerMain = document.querySelector(".photographer-main")
-    photographerMain.appendChild(ticketInfos)
-
-    // const ecahLikes = media.image
-    //console.log(media.likes)
-    // let sum = 0
-    // let likeNumbers = media.likes
-    // //console.log(likeNumbers)
-    // for (let number in likeNumbers) {
-    //   sum += likeNumbers[number]
-    // }
-    // const likeNumber = Object.keys(likeNumbers)
-    //console.log(likeNumber)
-    // likeNumbers.map(({ likeNumbers }) => +likeNumbers)
-    // console.log(sum)
-    // console.log(likeNumbers)
-
-    // console.log(media.likes)
-    // let likeNumbers = media.likes
-    // for (numbers in like) {
-    //   let sum = 0
-    //   const likeNumber = Object.keys(likeNumbers)
-    //   sum += likeNumbers[number]
-    // }
-    // console.log(sum)
-
-    // Likes on media card
+    // Add Likes on media card ticket infos
     const likes = document.createElement("p")
-    heartEmoji = "U+2764 U+fe0f"
     likes.textContent = media.likes + " " + "❤️"
 
     imageligthBoxLink.appendChild(img)
@@ -157,3 +114,28 @@ function mediaTemplate(data) {
 //     return null
 //   }
 // }
+
+function getSumOf(media) {
+  // total of likes an price display onpage's text ticket
+  const ticketInfos = document.createElement("div")
+  ticketInfos.setAttribute("class", "infos-ticket")
+
+  let sumOfPrices = 0
+  let sumOfLikes = 0
+
+  media.forEach((media) => {
+    sumOfLikes += media.likes
+    sumOfPrices += media.price
+  })
+
+  ticketInfos.innerHTML +=
+    sumOfLikes + " " + "❤️" + "&emsp;" + "&emsp;" + "&emsp;" + "&emsp;"
+  ticketInfos.innerHTML += sumOfPrices + "&nbsp;" + "/" + " " + "jour"
+
+  const photographerMain = document.querySelector(".photographer-main")
+  photographerMain.appendChild(ticketInfos)
+
+  // const likes = document.createElement("p")
+  // heartEmoji = "U+2764 U+fe0f"
+  // likes.textContent = media.likes + " " + "❤️"
+}
