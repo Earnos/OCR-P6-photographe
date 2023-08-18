@@ -15,18 +15,20 @@ function getDropDownMenu() {
 
   filterContainer.innerHTML = `
   <p>Trier par</p>
-  <div class="dropdown" >
-    <div class="select" >
+  <div class="dropdown">
+    <div class="select"  aria-controls="menu" tabindex="0">
     <span class="selected">Popularité</span>
     <div class="caret"></div>
     </div>
-    <ul class="menu">
-    <li class="active">Popularité</li>
-    <li>Date</li>
-    <li>Titre</li>
+    <ul class="menu" role="menu" aria-labelledby="menubutton"> 
+    <hr/>
+    <li role="menuitem">Date</li>
+    <hr/>
+    <li role="menuitem">Titre</li>
     </ul>
     </div>
     `
+  // <li class="active" role="menuitem" >Popularité</li>
 
   const dropdown = document.querySelector(".dropdown")
 

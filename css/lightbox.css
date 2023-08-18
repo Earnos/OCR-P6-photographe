@@ -20,14 +20,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 97vh;
+  min-height: 95vh;
 }
 
 .lightbox-container > img {
   max-width: 100%;
   height: auto;
   border-radius: 1%;
-  -webkit-box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.74);
   box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.74);
   animation: lightboxIn 0.5s;
 }
@@ -85,6 +84,13 @@
   height: 48px;
   opacity: 0.5;
   background: url(../assets/icons/loader.svg) center center no-repeat;
+}
+
+.lightbox-infos {
+  color: #901c1c;
+  font-size: 24px;
+  margin: 0 0 0 8em;
+  padding-bottom: 2em;
 }
 
 @keyframes lightboxIn {

@@ -13,16 +13,16 @@ function getFormNameTitle(name) {
   headerTitle.innerHTML = `Contactez-moi <br> ${name}`
 }
 
-function getFormValues(e) {
+function getFormValues() {
   const form = document.getElementById("form")
-  form.addEventListener("submit", () => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault()
     const firstName = document.getElementsByTagName("input")[0].value
     const lastName = document.getElementsByTagName("input")[1].value
     const Email = document.getElementsByTagName("input")[2].value
-    const message = document.getElementsByTagName("input")[3].value
+    const message = document.getElementsByTagName("textarea")[0].value
 
-    console.log(firstName + lastName + Email + message)
+    console.log(firstName, lastName, Email, message)
 
     return false
   })

@@ -55,7 +55,7 @@ async function init() {
   //const photographers = await getPhotographers()
   displayPhotographersData(photographer)
   displayPhotographerMedia([photographer, media])
-  getSumOf(media)
+  // getSumOf(media)
   new Lightbox([photographer, media])
   //displayLightbox([photographer, media])
 }

@@ -26,14 +26,16 @@
     </header>
     <main id="main" class="photographer-main">
       <div class="photograph-header">
-        <button
-          type="button"
-          alt="Contact Me"
-          class="contact_button"
-          onclick="displayModal()"
-        >
-          Contactez-moi
-        </button>
+        <div class="header-btn">
+          <button
+            type="button"
+            alt="Contact Me"
+            class="contact_button"
+            onclick="displayModal()"
+          >
+            Contactez-moi
+          </button>
+        </div>
       </div>
     </main>
     <div
@@ -52,7 +54,7 @@
             onclick="closeModal()"
           />
         </header>
-        <form action="" id="form" onsubmit="getFormValues(e)">
+        <form action="" id="form">
           <div>
             <label for="first-name">Prénom</label>
             <input

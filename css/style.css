@@ -75,3 +75,37 @@ h1 {
   text-align: center;
   text-decoration: none;
 }
+
+@media (max-width: 1200px) {
+  .photographer_section {
+    display: block;
+  }
+  article {
+    margin-bottom: 8%;
+  }
+}
+
+@media (max-width: 1000px) {
+  header > h1 {
+    margin-right: 3%;
+  }
+  .logo {
+    margin-left: 10%;
+  }
+}
+
+@media (max-width: 650px) {
+  header > h1 {
+    font-size: 1.4em;
+  }
+  .logo {
+    height: 35px;
+    width: 150px;
+  }
+}
+
+@media (max-width: 390px) {
+  header > h1 {
+    font-size: 1em;
+  }
+}

@@ -25,7 +25,7 @@
   order: 3;
 }
 
-.photograph-header > button {
+.photograph-header > .header-btn {
   order: 2;
 }
 
@@ -58,6 +58,13 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact_button:hover,
+.contact_button:focus {
+  background: #d3573c;
+  color: #000000;
 }
 
 /* Form modal */
@@ -65,7 +72,7 @@
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 30%;
+  min-width: 32%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +132,7 @@ form input {
 
 textarea {
   height: 6em;
-  width: 93%;
+  width: 91%;
   font-size: 1.6em;
   font-weight: 500;
   padding: 1em;
@@ -165,20 +172,17 @@ textarea {
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
-  padding: 1em;
+  padding: 1.5em 0.8em;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 /* clicked styles */
-/* .select-clicked {
-  border: 2px #26489a;
-  box-shadow: 0 0 0 0.8em #26489a;
-} */
 
-.select:hover {
-  background: #962b2b;
-}
+/* .select:focus {
+  background: #d3573c;
+  color: #000000;
+} */
 
 .caret {
   width: 0;
@@ -220,8 +224,10 @@ textarea {
   cursor: pointer;
 }
 
-.menu li:hover {
-  background: #913838;
+.menu li:hover,
+.menu li:focus {
+  background: #d3573c;
+  color: #000000;
 }
 
 /* Active styles */
@@ -304,4 +310,100 @@ textarea {
   z-index: 1000;
   margin-right: 7em;
   background: #db8876;
+}
+
+/* media query */
+/* page media photographer */
+@media (max-width: 1000px) {
+  .photograph-header {
+    flex-direction: column-reverse;
+    margin: 20% 0 30% 0;
+  }
+  .photograph-header > img,
+  .photograph-header .header-btn {
+    margin-bottom: 6%;
+  }
+  .filter-container {
+    margin-left: 10%;
+  }
+}
+@media (min-width: 650px) and (max-width: 1000px) {
+  #media-container {
+    gap: 6rem;
+  }
+}
+
+@media (max-width: 650px) {
+  #media-container {
+    gap: 3rem;
+  }
+}
+/* form media */
+@media (min-width: 700px) and (max-width: 1500px) {
+  .modal header h2 {
+    font-size: 2.7em;
+  }
+  .modal header img {
+    height: 35px;
+    width: 35px;
+  }
+  #form label {
+    font-size: 30px;
+  }
+}
+@media (max-width: 1200px) {
+  .modal {
+    min-width: 50%;
+    margin-left: 22%;
+  }
+  .modal header h2 {
+    font-size: 2.3em;
+  }
+  .modal header img {
+    height: 25px;
+    width: 25px;
+  }
+  #form label {
+    font-size: 25px;
+  }
+  textarea {
+    width: 91%;
+    height: 4em;
+  }
+}
+@media (max-width: 700px) {
+  textarea {
+    width: 88%;
+    height: 2.2em;
+  }
+  .modal {
+    margin-left: 12%;
+    padding: 28px;
+  }
+  .modal header h2 {
+    font-size: 2em;
+  }
+  .modal header img {
+    height: 15px;
+    width: 15px;
+  }
+  #form label {
+    font-size: 20px;
+  }
+  #form button {
+    margin-left: 17%;
+  }
+  #main .infos-ticket {
+    margin-right: 2.5em;
+  }
+}
+@media (min-width: 701px) and (max-width: 830px) {
+  .modal {
+    min-width: 50%;
+    margin-left: 20%;
+  }
+  textarea {
+    width: 90%;
+    height: 4em;
+  }
 }
