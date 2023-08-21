@@ -21,6 +21,7 @@ function getDropDownMenu() {
     <div class="caret"></div>
     </div>
     <ul class="menu" role="menu" aria-labelledby="menubutton"> 
+    <li role="menuitem" class="active">Popularité</li>
     <hr/>
     <li role="menuitem">Date</li>
     <hr/>

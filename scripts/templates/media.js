@@ -22,18 +22,37 @@ function mediaTemplate(data) {
   mediaContainer.setAttribute("id", "media-container")
   photosContainer.appendChild(mediaContainer)
 
-  // Get dynamic name for form title function
+  // Get dynamic name for form title
   getFormNameTitle(name)
-  // Function for filter creation
-  getDropDownMenu()
-  getSumOf(data, price, likes)
+  // recup form's value
   getFormValues()
+  // get and display infos ticket
+  getSumOf(data, price, likes)
+  // filter creation
+  getDropDownMenu()
+  //likeOrDislike()
+  //const LightboxInit = new Lightbox(data)
 
   // display dom element via this template
   data[1].forEach((media) => {
     article = getMediasDOM(media)
     mediaContainer.appendChild(article)
   })
+
+  // lightBoxClass.constructor()
+  // lightBoxClass.buildDOM
+  // lightBoxClass.lightBoxInit
+  // console.log(lightBoxClass)
+  //likeOrDislike(likes)
+
+  //const allpictures = document.getElementsByClassName(".media-picture")
+  // allpictures.forEach(() => {
+  //   allpictures.addEventListener("click", (e) => {
+  //     e.preventDefault()
+  //     const lightBoxInit = new Lightbox(data)
+  //     new Lightbox(e.currentTarget.getAttribute("src"))
+  //   })
+  // })
 
   /**
    * photographer's page media DOM element creation
@@ -50,7 +69,7 @@ function mediaTemplate(data) {
     video.setAttribute("class", "media-video")
     imageligthBoxLink.setAttribute("class", "media-link")
     imageligthBoxLink.setAttribute("href", " ") //`${mediaPhoto}`
-    imageligthBoxLink.setAttribute("onclick", "displayLightbox()")
+    //imageligthBoxLink.setAttribute("onclick", "displayLightbox()")
     article.setAttribute("class", "media-article")
     infosMedia.setAttribute("class", "infos-media")
 
@@ -81,10 +100,45 @@ function mediaTemplate(data) {
     } else {
       return null
     }
+    // Execute lightbox
+    console.log(imageligthBoxLink)
+    imageligthBoxLink.addEventListener("click", (e) => {
+      e.preventDefault()
+      new Lightbox(data)
+    })
+    // next or previous pictures in lightbox
+    // const nextBtn = document.querySelector(".next-btn")
+    // nextBtn.addEventListener("click", () => {
+    //   mediaPhoto.indexOf(mediaPhoto)
+    // })
 
     // Add Likes on media card ticket infos
     const likes = document.createElement("p")
+    likes.classList.add("likes")
     likes.textContent = media.likes + " " + "❤️"
+    allLikes = media.likes
+    likes.addEventListener("click", () => {
+      allLikes.value++
+    })
+
+    // likes or dislikes
+    let currentNumber = media.likes
+    let isIncreased = true
+    likes.addEventListener("click", () => {
+      let decrement = (likes.textContent = currentNumber - 1 + " " + "❤️")
+      let increment = (likes.textContent = currentNumber + 1 + " " + "❤️")
+      isIncreased ? increment : decrement
+      //count ? decrement : null
+      // likes.textContent = increment
+      // isIncreased ? decrement : null
+      // increment ? decrement : null
+      // if (!count) {
+      //   likes.textContent = decrement
+      // } else if (count) {
+      //   likes.textContent = increment
+      // }
+      // return false
+    })
 
     imageligthBoxLink.appendChild(img)
     article.appendChild(imageligthBoxLink)
@@ -121,6 +175,17 @@ function getSumOf(data, likes) {
   const photographerMain = document.querySelector(".photographer-main")
   photographerMain.appendChild(ticketInfos)
 }
+
+// function likeOrDislike(textLikes) {
+//   //const textLikes = document.querySelector(".likes")
+
+//   // allLikes.forEach(() => {
+//   console.log(textLikes)
+//   textLikes.addEventListener("click", (value) => {
+//     value++
+//   })
+//   // })
+// }
 
 // function getPicsOrVideo(media) {
 //   // Display images or videos

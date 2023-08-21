@@ -1,3 +1,136 @@
+/**
+ * @property {HTMLElement} element
+ */
+class Lightbox {
+  // lightboxInit(data) {
+  //   console.log(data)
+  //   const allpictures = document
+  //     .getElementsByClassName(".media-picture")
+  //     .forEach(() => {
+  //       allpictures.addEventListener("click", (e) => {
+  //         e.preventDefault()
+  //         new Lightbox(e.currentTarget.getAttribute("src"))
+  //       })
+  //     })
+  //////////////////////
+  // const mediaPics = document.querySelector(".media-picture")
+  // mediaPics.addEventListener("click", () => {
+  //   this.buildDOM
+  // })
+  // const [{ image }] = data[1]
+  // const { name } = data[0]
+
+  // const arr = name
+  // const splitName = arr.split(" ")
+  // splitName.pop()
+  // const folderName = splitName.join(" ")
+  // photoByFolderName = folderName.replaceAll("-", " ")
+  // const mediaPhoto = `assets/images/${photoByFolderName}/${image}`
+
+  ////////////////////////
+  // data[1].forEach((media) => {
+  // const link = document.link.addEventListener("click", (e) => {
+  //   e.preventDefault()
+  //   new Lightbox(e.currentTarget.getAttribute("src"))
+  // })
+  /////////////////////////
+  //   const links = document
+  //     .querySelectorAll('a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]')
+  //     .forEach((link) =>
+  //       link.addEventListener("click", (e) => {
+  //         e.preventDefault()
+  //         new Lightbox(e.currentTarget.getAttribute("href"))
+  //       })
+  //     )
+  //}
+  /**
+   * @param {string} url URL de l'image
+   */
+  constructor(data) {
+    //this.Photo = logique recup photo list ( creer founction show(index, id) {indice})
+    this.element = this.buildDOM(data)
+    //this.loadImage(data)
+    this.onKeyUp = this.onKeyUp.bind(this)
+    document.body.appendChild(this.element)
+    document.addEventListener("keyup", this.onKeyUp)
+  }
+  // loadImage(data) {
+  //   const image = new Image()
+  //   const container = this.element.querySelector(".lightbox-container")
+  //   const loader = document.createElement("div")
+  //   loader.classList.add("lightbox-loader")
+  //   container.appendChild(loader)
+  //   image.onload = function () {
+  //     container.removeChild(loader)
+  //     container.appendChild(image)
+  //   }
+  // }
+  /**
+   *
+   * @param {KeyboardEvent} e
+   */
+  onKeyUp(e) {
+    if (e.key === "Escape") {
+      this.close(e)
+    }
+  }
+
+  /**
+   * Close the lightbox
+   * @param {MouseEvent} e
+   */
+  close(e) {
+    e.preventDefault()
+    this.element.classList.add("fadeOut")
+    window.setTimeout(() => {
+      this.element.parentElement.removeChild(this.element)
+    }, 500)
+    //clean the listener after utilisation for better performance
+    document.removeEventListener("keyup", this.onKeyUp)
+  }
+
+  /**
+   *
+   * @param {string} url URL de l'image
+   * @return {HTMLElement}
+   */
+  buildDOM(data, photoByFolderName) {
+    // destructuring of data
+    const [{ title, image }] = data[1]
+    const { name } = data[0]
+    // modify the array to take the rignth name's folder
+    // url of img
+    // data[1].forEach((media) => {
+    const arr = name
+    const splitName = arr.split(" ")
+    splitName.pop()
+    const folderName = splitName.join(" ")
+    photoByFolderName = folderName.replaceAll("-", " ")
+    const mediaPhoto = `assets/images/${photoByFolderName}/${image}`
+    // })
+
+    console.log(data[1][0])
+    // DOM creation part
+    const dom = document.createElement("div")
+
+    dom.classList.add("lightbox")
+    dom.innerHTML = `<button class="lightbox-closed" type="button" title="close"></button>
+      <button  class="next-btn" type="button" title="next"></button>
+      <button  class="previous-btn" type="button" title="previous"></button>
+      <div class="lightbox-container"><img src=${mediaPhoto} alt="???"></div>
+      <div class="lightbox-infos">
+        ${data[1].indexOf(image) + 2}  ${title}
+      </div>`
+    dom
+      .querySelector(".lightbox-closed")
+      .addEventListener("click", this.close.bind(this))
+    return dom
+  }
+}
+
+//<div class="lightbox-loader"></div>
+//<img src="${image}" title="Lilac breasted roller" >
+
 //function displayLightbox() {
 //create DOM element for lightbox first way (full javascript)
 // const body = document.body
@@ -42,91 +175,3 @@
 //   <div class="lightbox-infos">index & img name</div>`
 // body.appendChild(dom)
 //}
-
-/**
- * @property {HTMLElement} element
- */
-class Lightbox {
-  static LightboxInit() {
-    const links = document
-      .querySelectorAll('a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]')
-      .forEach((link) =>
-        link.addEventListener("click", (e) => {
-          e.preventDefault()
-          new Lightbox(e.currentTarget.getAttribute("href"))
-        })
-      )
-    console.log(links)
-  }
-  /**
-   * @param {string} url URL de l'image
-   */
-  constructor(data) {
-    this.element = this.buildDOM(data)
-    this.loadImage(data)
-    this.onKeyUp = this.onKeyUp.bind(this)
-    document.body.appendChild(this.element)
-    document.addEventListener("keyup", this.onKeyUp)
-  }
-  loadImage(data) {
-    const image = new Image()
-    const container = this.element.querySelector(".lightbox-container")
-    const loader = document.createElement("div")
-    loader.classList.add("lightbox-loader")
-    container.appendChild(loader)
-    image.onload = function () {
-      container.removeChild(loader)
-      container.appendChild(image)
-    }
-  }
-  /**
-   *
-   * @param {KeyboardEvent} e
-   */
-  onKeyUp(e) {
-    if (e.key === "Escape") {
-      this.close(e)
-    }
-  }
-
-  /**
-   * Close the lightbox
-   * @param {MouseEvent} e
-   */
-  close(e) {
-    e.preventDefault()
-    this.element.classList.add("fadeOut")
-    window.setTimeout(() => {
-      this.element.parentElement.removeChild(this.element)
-    }, 500)
-    //clean the listener after utilisation for better performance
-    document.removeEventListener("keyup", this.onKeyUp)
-  }
-
-  /**
-   *
-   * @param {string} url URL de l'image
-   * @return {HTMLElement}
-   */
-  buildDOM(data) {
-    const [{ title, image, likes, date, price }] = data[1]
-    //data.preventDefault()
-    console.log(data[1][0])
-    const dom = document.createElement("div")
-    dom.classList.add("lightbox")
-    dom.innerHTML = `<button class="lightbox-closed" type="button" title="close"></button>
-      <button  class="next-btn" type="button" title="next"></button>
-      <button  class="previous-btn" type="button" title="previous"></button>
-      <div class="lightbox-container"></div>
-      <div class="lightbox-infos">
-        ${data[1].indexOf(image) + 1}  ${title}
-      </div>`
-    dom
-      .querySelector(".lightbox-closed")
-      .addEventListener("click", this.close.bind(this))
-    return dom
-  }
-}
-
-//<div class="lightbox-loader"></div>
-//<img src="${image}" title="Lilac breasted roller" >

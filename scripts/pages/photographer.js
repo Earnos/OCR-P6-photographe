@@ -56,7 +56,7 @@ async function init() {
   displayPhotographersData(photographer)
   displayPhotographerMedia([photographer, media])
   // getSumOf(media)
-  new Lightbox([photographer, media])
+  // new Lightbox([photographer, media])
   //displayLightbox([photographer, media])
 }
 init()

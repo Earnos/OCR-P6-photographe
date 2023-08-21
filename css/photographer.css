@@ -9,7 +9,7 @@
 }
 
 .photograph-header {
-  background-color: #fafafa;
+  background-color: #ffffff;
   height: 300px;
   margin: 2% 7% 5% 7%;
   display: flex;
@@ -292,6 +292,10 @@ textarea {
   font-weight: 500;
   display: flex;
   justify-content: space-between;
+}
+
+.likes {
+  cursor: pointer;
 }
 
 #main .infos-ticket {
