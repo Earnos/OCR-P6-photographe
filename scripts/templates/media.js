@@ -30,8 +30,6 @@ function mediaTemplate(data) {
   getSumOf(data, price, likes)
   // filter creation
   getDropDownMenu()
-  //likeOrDislike()
-  //const LightboxInit = new Lightbox(data)
 
   // display dom element via this template
   data[1].forEach((media) => {
@@ -39,27 +37,12 @@ function mediaTemplate(data) {
     mediaContainer.appendChild(article)
   })
 
-  // lightBoxClass.constructor()
-  // lightBoxClass.buildDOM
-  // lightBoxClass.lightBoxInit
-  // console.log(lightBoxClass)
-  //likeOrDislike(likes)
-
-  //const allpictures = document.getElementsByClassName(".media-picture")
-  // allpictures.forEach(() => {
-  //   allpictures.addEventListener("click", (e) => {
-  //     e.preventDefault()
-  //     const lightBoxInit = new Lightbox(data)
-  //     new Lightbox(e.currentTarget.getAttribute("src"))
-  //   })
-  // })
-
   /**
+   *
    * photographer's page media DOM element creation
    * @returns {HTMLDivElement}
    */
   function getMediasDOM(media) {
-    //console.log(media)
     const article = document.createElement("article")
     const imageligthBoxLink = document.createElement("a")
     const img = document.createElement("img")
@@ -68,8 +51,7 @@ function mediaTemplate(data) {
 
     video.setAttribute("class", "media-video")
     imageligthBoxLink.setAttribute("class", "media-link")
-    imageligthBoxLink.setAttribute("href", " ") //`${mediaPhoto}`
-    //imageligthBoxLink.setAttribute("onclick", "displayLightbox()")
+    imageligthBoxLink.setAttribute("href", " ")
     article.setAttribute("class", "media-article")
     infosMedia.setAttribute("class", "infos-media")
 
@@ -100,17 +82,26 @@ function mediaTemplate(data) {
     } else {
       return null
     }
+
+    //////////////////////////////////////////
     // Execute lightbox
-    console.log(imageligthBoxLink)
-    imageligthBoxLink.addEventListener("click", (e) => {
+    //////////////////////////////////////////
+    img.addEventListener("click", (e) => {
       e.preventDefault()
-      new Lightbox(data)
+      console.log(img)
+      const lightBoxInit = new Lightbox(data, index, mediaPhoto, media.title)
+      console.log(lightBoxInit)
     })
-    // next or previous pictures in lightbox
-    // const nextBtn = document.querySelector(".next-btn")
-    // nextBtn.addEventListener("click", () => {
-    //   mediaPhoto.indexOf(mediaPhoto)
-    // })
+
+    // Get current index image
+
+    const indexLogic = (element) => (element = media)
+    const index = data[1].findIndex(indexLogic)
+    // console.log(index)
+
+    //console.log(data[1].indexOf(data[1][0].image))
+
+    //console.log(media.findIndex(mediaPhoto))
 
     // Add Likes on media card ticket infos
     const likes = document.createElement("p")
@@ -123,12 +114,12 @@ function mediaTemplate(data) {
 
     // likes or dislikes
     let currentNumber = media.likes
-    let isIncreased = true
+    //let isIncreased = true
     likes.addEventListener("click", () => {
-      let decrement = (likes.textContent = currentNumber - 1 + " " + "❤️")
+      // let decrement = (likes.textContent = currentNumber - 1 + " " + "❤️")
       let increment = (likes.textContent = currentNumber + 1 + " " + "❤️")
-      isIncreased ? increment : decrement
-      //count ? decrement : null
+      // isIncreased ? increment : decrement
+      // count ? decrement : null
       // likes.textContent = increment
       // isIncreased ? decrement : null
       // increment ? decrement : null

@@ -25,7 +25,7 @@
 
 .lightbox-container > img {
   max-width: 90%;
-  height: 90%;
+  max-height: 90vh;
   border-radius: 1%;
   box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.74);
   animation: lightboxIn 0.5s;

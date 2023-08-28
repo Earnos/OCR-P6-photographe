@@ -52,11 +52,8 @@ async function displayPhotographerMedia(allDatas) {
 async function init() {
   //Get photographer's data & media
   const { photographer, media } = await getPhotographers()
-  //const photographers = await getPhotographers()
+
   displayPhotographersData(photographer)
   displayPhotographerMedia([photographer, media])
-  // getSumOf(media)
-  // new Lightbox([photographer, media])
-  //displayLightbox([photographer, media])
 }
 init()
