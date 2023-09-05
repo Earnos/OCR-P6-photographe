@@ -28,10 +28,33 @@ function mediaTemplate(data) {
   getFormValues()
   // get and display infos ticket
   getSumOf(data, price, likes)
-  // filter creation
+  // filter menu element
   getDropDownMenu()
 
-  // display dom element via this template
+  // Filter menu sort
+  const selectedFilter = document.querySelector(".selected")
+  const pictures = document.querySelectorAll(".media-picture")
+  console.log(selectedFilter.textContent)
+
+  selectedFilter.textContent == "Popularité"
+    ? data[1].sort((a, b) => {
+        a.likes - b.likes
+      })
+    : null
+
+  // switch (selectedFilter) {
+  //   case 'Popularité':
+  //     selectedFilter.textContent == "Popularité" ? data[1].sort((a, b) => {a.likes - b.likes}) : null
+  //     break;
+  //   case 'Date':
+  //     selectedFilter.textContent == "Date" ? data[1].sort((a, b) => {a.date - b.date}) : null
+  //   break
+  //   case 'Titre':
+  //     selectedFilter.textContent == "Titre" ? data[1].sort((a, b) => {a.title - b.title}) : null
+  //     break;
+  //   default:
+
+  // display media dom element via this template
   data[1].forEach((media) => {
     article = getMediasDOM(media)
     mediaContainer.appendChild(article)
@@ -88,9 +111,7 @@ function mediaTemplate(data) {
     //////////////////////////////////////////
     img.addEventListener("click", (e) => {
       e.preventDefault()
-      console.log(img)
       const lightBoxInit = new Lightbox(data, index, mediaPhoto, media.title)
-      console.log(lightBoxInit)
     })
 
     // Get current index image
@@ -116,19 +137,8 @@ function mediaTemplate(data) {
     let currentNumber = media.likes
     //let isIncreased = true
     likes.addEventListener("click", () => {
-      // let decrement = (likes.textContent = currentNumber - 1 + " " + "❤️")
+      //let decrement = (likes.textContent = currentNumber - 1 + " " + "❤️")
       let increment = (likes.textContent = currentNumber + 1 + " " + "❤️")
-      // isIncreased ? increment : decrement
-      // count ? decrement : null
-      // likes.textContent = increment
-      // isIncreased ? decrement : null
-      // increment ? decrement : null
-      // if (!count) {
-      //   likes.textContent = decrement
-      // } else if (count) {
-      //   likes.textContent = increment
-      // }
-      // return false
     })
 
     imageligthBoxLink.appendChild(img)
@@ -166,38 +176,3 @@ function getSumOf(data, likes) {
   const photographerMain = document.querySelector(".photographer-main")
   photographerMain.appendChild(ticketInfos)
 }
-
-// function likeOrDislike(textLikes) {
-//   //const textLikes = document.querySelector(".likes")
-
-//   // allLikes.forEach(() => {
-//   console.log(textLikes)
-//   textLikes.addEventListener("click", (value) => {
-//     value++
-//   })
-//   // })
-// }
-
-// function getPicsOrVideo(media) {
-//   // Display images or videos
-//   const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
-//   const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
-//   const hasImageProperty = media.hasOwnProperty("image")
-//   const hasVideoProperty = media.hasOwnProperty("video")
-
-//   if (hasImageProperty) {
-//     img.setAttribute("src", mediaPhoto)
-//   } else if (hasVideoProperty) {
-//     video.src = mediaVideo
-//     article.appendChild(video)
-//     video.pause()
-//     video.setAttribute("type", "video/mp4")
-//     video.preload = "auto"
-//     video.autoplay = false
-//     video.controls = true
-//     video.muted = false
-//     imageligthBoxLink.style.display = "none"
-//   } else {
-//     return null
-//   }
-// }
