@@ -4,37 +4,35 @@
 class Lightbox {
   constructor(data, index, url, title) {
     this.element = this.buildDOM(data, url, title, index)
-    this.getImages = this.getImages(data)
     this.onKeyUp = this.onKeyUp.bind(this)
     this.show = this.show(index)
-    // this.nextImg = nextBtn.addEventListener("click", () => {
-    //   this.nextImg(index)
-    // })
-    this.nextImg = this.nextImg(index)
-    this.previousImg = this.previousImg()
+    this.index = index
+    console.log(index)
     //this.loadImage(data)
-    //this.switch = this.switchImg(data) //logique recup photo list ( creer founction show(index) {indice})
-
-    // a rajouté dans la fonction show() ? (pour éviter le lancement auto du constructeur?)
+    // add to DOM
     document.body.appendChild(this.element)
+    // close by escape btn
     document.addEventListener("keyup", this.onKeyUp)
-  }
-
-  getImages() {
-    const images = Array.from(document.querySelectorAll(".media-picture"))
-    console.log(images)
-    images.forEach((img) => {
-      img.addEventListener("click", (e) => {
-        e.preventDefault()
-        //this.buildDOM(data)
-      })
+    // lightbox buttons
+    const prevBtn = document.querySelector(".previous-btn")
+    const nextBtn = document.querySelector(".next-btn")
+    console.log(prevBtn)
+    console.log(nextBtn)
+    prevBtn.addEventListener("click", () => {
+      this.previousImg(index)
+    })
+    nextBtn.addEventListener("click", () => {
+      this.nextImg(index)
     })
   }
 
-  show(index) {
+  // place la bonne image dans la ligthbox via l'index
+  show(index, data, url) {
+    //effacer pictures plus tard l42-43
     const pictures = document.querySelectorAll(".media-picture")
-    console.log(pictures)
-    let currentIndex = 0
+    console.log(data)
+    let currentIndex = index
+    console.log(currentIndex)
 
     if (index > pictures.length) {
       currentIndex = 1
@@ -49,23 +47,26 @@ class Lightbox {
   }
 
   previousImg() {
-    const prevBtn = document.querySelector(".previous-btn")
     const images = document.querySelectorAll(".media-picture")
-    console.log(prevBtn)
+    console.log("previous")
   }
 
-  nextImg(currentIndex, url) {
-    const nextBtn = document.getElementById("#next")
-    console.log(nextBtn)
+  nextImg(currentIndex) {
     const pictures = document.querySelectorAll(".media-picture")
-    pictures.currentSrc = currentIndex + 1
+    const selectedIndex = (document.querySelector(
+      ".lightbox-container > img"
+    ).src = currentIndex)
+    console.log(currentIndex)
+    // pictures[3].currentSrc
+    console.log("next")
+    console.log(selectedIndex)
+
+    pictures.currentSrc = selectedIndex + 1
     currentIndex = (currentIndex + 1) % pictures.length
-    // const srcByIndex = images[0].currentSrc
+    // const srcByIndex = pictures[0].currentSrc
   }
 
   // nextBtn.addEventListener("click", () => {
-  //   document.querySelector(".lightbox-container > img").src =
-  //     images[2].currentSrc
   // })
   // prevBtn.addEventListener("click", () => {
   //   images.currentSrc - 1
@@ -127,7 +128,7 @@ class Lightbox {
 
     dom.classList.add("lightbox")
     dom.innerHTML = `<button class="lightbox-closed" type="button" title="close"></button>
-      <button id='next' class="next-btn" type="button" title="next"></button>
+      <button class="next-btn" type="button" title="next"></button>
       <button  class="previous-btn" type="button" title="previous"></button>
       <div class="lightbox-container"><img src="${url}" alt="???"></img></div>
       <div class="lightbox-infos">

@@ -32,10 +32,9 @@ function mediaTemplate(data) {
   getDropDownMenu()
 
   // Filter menu sort
-  const selectedFilter = document.querySelector(".selected")
   const pictures = document.querySelectorAll(".media-picture")
-  console.log(selectedFilter.textContent)
 
+  const selectedFilter = document.querySelector(".selected")
   selectedFilter.textContent == "Popularité"
     ? data[1].sort((a, b) => {
         a.likes - b.likes
@@ -50,7 +49,7 @@ function mediaTemplate(data) {
   //     selectedFilter.textContent == "Date" ? data[1].sort((a, b) => {a.date - b.date}) : null
   //   break
   //   case 'Titre':
-  //     selectedFilter.textContent == "Titre" ? data[1].sort((a, b) => {a.title - b.title}) : null
+  //     selectedFilter.textContent == "Titre" ? data[1].sort((a) => return a.title) : null
   //     break;
   //   default:
 
@@ -112,6 +111,7 @@ function mediaTemplate(data) {
     img.addEventListener("click", (e) => {
       e.preventDefault()
       const lightBoxInit = new Lightbox(data, index, mediaPhoto, media.title)
+      // trouver l'index
     })
 
     // Get current index image
@@ -175,4 +175,9 @@ function getSumOf(data, likes) {
 
   const photographerMain = document.querySelector(".photographer-main")
   photographerMain.appendChild(ticketInfos)
+}
+
+function sortBy(typeSort, dataToSort) {
+  let dataSorted = dataToSort
+  return dataSorted
 }
