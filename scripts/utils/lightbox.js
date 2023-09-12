@@ -3,21 +3,18 @@
  */
 class Lightbox {
   constructor(data, index, url, title) {
-    this.element = this.buildDOM(data, url, title, index)
-    this.onKeyUp = this.onKeyUp.bind(this)
-    this.show = this.show(index)
-    this.index = index
-    console.log(index)
-    //this.loadImage(data)
-    // add to DOM
+    this.element = this.buildDOM(url, title)
     document.body.appendChild(this.element)
+    this.show = this.show(data, index)
+    this.index = index
+    //this.loadImage(media)
+    // add to DOM
+    this.onKeyUp = this.onKeyUp.bind(this)
     // close by escape btn
     document.addEventListener("keyup", this.onKeyUp)
     // lightbox buttons
     const prevBtn = document.querySelector(".previous-btn")
     const nextBtn = document.querySelector(".next-btn")
-    console.log(prevBtn)
-    console.log(nextBtn)
     prevBtn.addEventListener("click", () => {
       this.previousImg(index)
     })
@@ -25,55 +22,63 @@ class Lightbox {
       this.nextImg(index)
     })
   }
-
   // place la bonne image dans la ligthbox via l'index
-  show(index, data, url) {
-    //effacer pictures plus tard l42-43
+  show(index, data) {
+    const lightboxImg = document.querySelector(".lightbox-container > img")
+    console.log(lightboxImg.parentElement.parentElement)
     const pictures = document.querySelectorAll(".media-picture")
+    const picture = document.querySelector(".media-picture")
     console.log(data)
-    let currentIndex = index
-    console.log(currentIndex)
+    console.log(pictures)
+    console.log(picture)
 
-    if (index > pictures.length) {
+    let currentIndex = pictures[index]
+    console.log(index)
+    //let currentIndex = data[1].indexOf(this.element)
+    //let currentIndex = index.indexOf(indexById)
+    // const currentIndex = pictures.findIndex(
+    //   (element) => element.src == picture.src
+    // )
+    //let indexById = pictures.findIndex((element) => element.id == id)
+    //console.log(indexById)
+
+    if (this.currentIndex > pictures.length) {
       currentIndex = 1
     }
-    if (index < 1) {
+    if (this.currentIndex < 1) {
       currentIndex = pictures.length
     }
+    //this.buildDOM()
   }
 
-  currentImg(index) {
+  currentImg(index, currentIndex) {
     this.show((currentIndex = index))
   }
 
-  previousImg() {
-    const images = document.querySelectorAll(".media-picture")
+  previousImg(index, currentIndex) {
     console.log("previous")
+    currentIndex -= 1
   }
 
-  nextImg(currentIndex) {
+  nextImg(currentIndex, index) {
     const pictures = document.querySelectorAll(".media-picture")
-    const selectedIndex = (document.querySelector(
-      ".lightbox-container > img"
-    ).src = currentIndex)
-    console.log(currentIndex)
-    // pictures[3].currentSrc
-    console.log("next")
-    console.log(selectedIndex)
+    let slides = pictures
+    //const { id } = index
+    if (currentIndex === slides.length - 1) return
+    currentIndex += 1
 
-    pictures.currentSrc = selectedIndex + 1
-    currentIndex = (currentIndex + 1) % pictures.length
+    //pictures.findIndex((element) => element.id == index.id)
+    // const selectedIndex = (document.querySelector(
+    //   ".lightbox-container > img"
+    // ).src = pictures[3].src)
+    console.log("next")
+    console.log(currentIndex)
+    //currentIndex = (currentIndex + 1) % pictures.length
+    //pictures.src = currentIndex + 1
     // const srcByIndex = pictures[0].currentSrc
   }
 
-  // nextBtn.addEventListener("click", () => {
-  // })
-  // prevBtn.addEventListener("click", () => {
-  //   images.currentSrc - 1
-  // })
-  //}
-
-  // loadImage(data) {
+  // loadImage(media) {
   //   const image = new Image()
   //   const container = this.element.querySelector(".lightbox-container")
   //   const loader = document.createElement("div")
@@ -113,18 +118,9 @@ class Lightbox {
    * @param {string} url URL de l'image
    * @return {HTMLElement}
    */
-  buildDOM(data, url, title, index) {
-    // destructuring of data
-    // const [{ image }] = data[1]
-    // const { name } = data[0]
-    // console.log(data[1][0])
-
+  buildDOM(url, title) {
     // DOM creation
     const dom = document.createElement("div")
-    const images = document.querySelectorAll(".media-picture")
-    const imageTag = images[0].currentSrc
-    //console.log(images.currentSrc)
-    //console.log(data[1])
 
     dom.classList.add("lightbox")
     dom.innerHTML = `<button class="lightbox-closed" type="button" title="close"></button>

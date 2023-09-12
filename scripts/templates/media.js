@@ -30,17 +30,6 @@ function mediaTemplate(data) {
   getSumOf(data, price, likes)
   // filter menu element
   getDropDownMenu()
-
-  // Filter menu sort
-  const pictures = document.querySelectorAll(".media-picture")
-
-  const selectedFilter = document.querySelector(".selected")
-  selectedFilter.textContent == "Popularité"
-    ? data[1].sort((a, b) => {
-        a.likes - b.likes
-      })
-    : null
-
   // switch (selectedFilter) {
   //   case 'Popularité':
   //     selectedFilter.textContent == "Popularité" ? data[1].sort((a, b) => {a.likes - b.likes}) : null
@@ -59,6 +48,15 @@ function mediaTemplate(data) {
     mediaContainer.appendChild(article)
   })
 
+  // Filter menu sort
+  const pictures = document.querySelectorAll(".media-picture")
+  const selectedFilter = document.querySelector(".selected")
+  console.log(pictures)
+  selectedFilter.textContent == "Popularité"
+    ? data[1].sort((a, b) => {
+        a.likes - b.likes
+      })
+    : null
   /**
    *
    * photographer's page media DOM element creation
@@ -110,15 +108,36 @@ function mediaTemplate(data) {
     //////////////////////////////////////////
     img.addEventListener("click", (e) => {
       e.preventDefault()
-      const lightBoxInit = new Lightbox(data, index, mediaPhoto, media.title)
-      // trouver l'index
+      const index = data[1].indexOf(media.id)
+      console.log(data)
+      //selectionne les images dans l'html (DOM) et compare via l'index de l'image courante
+      const currentElement = e.target.parentElement.parentElement
+      console.log(currentElement)
+      console.log(currentElement.parentElement)
+      let Elements = currentElement.parentElement
+      console.log(Elements)
+      const currentImgIndex = null
+      Array.from(Elements.children).forEach((p, index) => {
+        console.log(p.firstChild.firstChild)
+        // if (p.firstChild.firstChild == null ) {  // a supprimer car pas besoin si la structure html est bonne pour les videos aussi
+        // }
+        // si le src == currentElement.src voir index
+        if (p.firstChild.firstChild.src == currentElement.src) {
+          currentImgIndex = index
+        }
+      })
+      console.log(index)
+      //console.log(data.indexOf(media.id))
+      const lightBoxInit = new Lightbox(
+        data,
+        index,
+        mediaPhoto,
+        media.title,
+        media.id
+      )
     })
-
     // Get current index image
-
-    const indexLogic = (element) => (element = media)
-    const index = data[1].findIndex(indexLogic)
-    // console.log(index)
+    //const indexLogic = (element) => (element = media)
 
     //console.log(data[1].indexOf(data[1][0].image))
 
