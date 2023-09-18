@@ -80,6 +80,7 @@ function mediaTemplate(data) {
     const photoTitle = document.createElement("p")
     photoTitle.textContent = media.title
     photoTitle.setAttribute("class", "media-photo-title")
+    imageligthBoxLink.appendChild(img)
 
     // Display images or videos
     const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
@@ -91,14 +92,16 @@ function mediaTemplate(data) {
       img.setAttribute("src", mediaPhoto)
     } else if (hasVideoProperty) {
       video.src = mediaVideo
-      article.appendChild(video)
       video.pause()
       video.setAttribute("type", "video/mp4")
       video.preload = "auto"
       video.autoplay = false
       video.controls = true
       video.muted = false
-      imageligthBoxLink.style.display = "none"
+      imageligthBoxLink.removeChild(img)
+      imageligthBoxLink.appendChild(video)
+      imageligthBoxLink.style.cursor = "default"
+      imageligthBoxLink.removeAttribute("href")
     } else {
       return null
     }
@@ -108,40 +111,33 @@ function mediaTemplate(data) {
     //////////////////////////////////////////
     img.addEventListener("click", (e) => {
       e.preventDefault()
-      const index = data[1].indexOf(media.id)
-      console.log(data)
       //selectionne les images dans l'html (DOM) et compare via l'index de l'image courante
-      const currentElement = e.target.parentElement.parentElement
-      console.log(currentElement)
-      console.log(currentElement.parentElement)
-      let Elements = currentElement.parentElement
-      console.log(Elements)
-      const currentImgIndex = null
-      Array.from(Elements.children).forEach((p, index) => {
-        console.log(p.firstChild.firstChild)
-        // if (p.firstChild.firstChild == null ) {  // a supprimer car pas besoin si la structure html est bonne pour les videos aussi
-        // }
-        // si le src == currentElement.src voir index
+      const currentElement = e.target
+      let mediaElements =
+        currentElement.parentElement.parentElement.parentElement
+      console.log(mediaElements.children)
+      let currentImgIndex = null
+      Array.from(mediaElements.children).forEach((p, index) => {
+        // si le src == currentElement.src get index
         if (p.firstChild.firstChild.src == currentElement.src) {
           currentImgIndex = index
         }
+        //console.log(mediaElements.children[index])
+        //console.log(Array.from(mediaElements.children).indexOf(currentElement))
       })
-      console.log(index)
-      //console.log(data.indexOf(media.id))
+
+      // const currentIndex = Array.from(mediaElements.children).indexOf(
+      //   currentElement
+      // )
+
+      //console.log(mediaElements.children[currentImgIndex])
       const lightBoxInit = new Lightbox(
         data,
-        index,
+        currentImgIndex,
         mediaPhoto,
-        media.title,
-        media.id
+        media.title
       )
     })
-    // Get current index image
-    //const indexLogic = (element) => (element = media)
-
-    //console.log(data[1].indexOf(data[1][0].image))
-
-    //console.log(media.findIndex(mediaPhoto))
 
     // Add Likes on media card ticket infos
     const likes = document.createElement("p")
@@ -159,8 +155,7 @@ function mediaTemplate(data) {
       //let decrement = (likes.textContent = currentNumber - 1 + " " + "❤️")
       let increment = (likes.textContent = currentNumber + 1 + " " + "❤️")
     })
-
-    imageligthBoxLink.appendChild(img)
+    //imageligthBoxLink.appendChild(img)
     article.appendChild(imageligthBoxLink)
     infosMedia.appendChild(photoTitle)
     article.appendChild(infosMedia)
