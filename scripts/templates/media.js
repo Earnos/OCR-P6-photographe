@@ -51,7 +51,6 @@ function mediaTemplate(data) {
   // Filter menu sort
   const pictures = document.querySelectorAll(".media-picture")
   const selectedFilter = document.querySelector(".selected")
-  console.log(pictures)
   selectedFilter.textContent == "Popularité"
     ? data[1].sort((a, b) => {
         a.likes - b.likes
@@ -115,22 +114,13 @@ function mediaTemplate(data) {
       const currentElement = e.target
       let mediaElements =
         currentElement.parentElement.parentElement.parentElement
-      console.log(mediaElements.children)
       let currentImgIndex = null
       Array.from(mediaElements.children).forEach((p, index) => {
         // si le src == currentElement.src get index
         if (p.firstChild.firstChild.src == currentElement.src) {
           currentImgIndex = index
         }
-        //console.log(mediaElements.children[index])
-        //console.log(Array.from(mediaElements.children).indexOf(currentElement))
       })
-
-      // const currentIndex = Array.from(mediaElements.children).indexOf(
-      //   currentElement
-      // )
-
-      //console.log(mediaElements.children[currentImgIndex])
       const lightBoxInit = new Lightbox(
         data,
         currentImgIndex,

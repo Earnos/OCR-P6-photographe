@@ -3,50 +3,60 @@
  */
 class Lightbox {
   constructor(data, index, url, title) {
+    this.data = data
     this.currentIndex = index
     this.element = this.buildDOM(title)
     this.imageContainer = this.element.getElementsByTagName("img")[0]
-    console.log(this.imageContainer)
-    console.log(this.element)
     document.body.appendChild(this.element)
     this.show(url)
+    this.pictures = document.querySelectorAll(".media-picture")
     //this.loadImage(media)
-    // add to DOM
+    // close by escape keyboard's button
     this.onKeyUp = this.onKeyUp.bind(this)
-    // close by escape btn
     document.addEventListener("keyup", this.onKeyUp)
     // lightbox buttons
     const prevBtn = document.querySelector(".previous-btn")
     const nextBtn = document.querySelector(".next-btn")
-    prevBtn.addEventListener("click", () => {
-      this.previousImg(data)
+    prevBtn.addEventListener("click", (e) => {
+      e.preventDefault()
+      this.previousImg()
     })
-    nextBtn.addEventListener("click", () => {
-      this.nextImg(data)
+    nextBtn.addEventListener("click", (e) => {
+      e.preventDefault()
+      this.nextImg()
+    })
+    document.addEventListener("keydown", (e) => {
+      this.getImgWithArrows(e)
     })
   }
-  // place la bonne image dans la ligthbox via l'index
+
+  // place la bonne image dans la ligthbox
   show(url) {
     this.imageContainer.src = url
   }
 
-  previousImg(data) {
-    console.log(data[1])
-    console.log("previous")
-    this.currentIndex - 1
-    if (this.currentIndex < 1) {
-      this.currentIndex = data[1].length
+  previousImg() {
+    this.currentIndex--
+    if (this.currentIndex < 0) {
+      this.currentIndex = this.pictures.length - 1
     }
+    this.show(this.pictures[this.currentIndex].src)
   }
 
-  nextImg(data) {
-    console.log("next")
-    this.currentIndex + 1
-    if (this.currentIndex > data[1].length) {
-      currentIndex = 1
+  nextImg() {
+    this.currentIndex++
+    if (this.currentIndex >= this.pictures.length) {
+      this.currentIndex = 0
     }
-    //   if (this.currentIndex === data[0].length - 1) return
-    //   this.currentIndex + 1
+    this.show(this.pictures[this.currentIndex].src)
+  }
+
+  getImgWithArrows(e) {
+    if (e.code === `ArrowRight`) {
+      this.nextImg(e)
+    } else if (e.code === `ArrowLeft`) {
+      this.previousImg(e)
+    }
   }
 
   // loadImage(media) {
@@ -86,8 +96,8 @@ class Lightbox {
 
   /**
    *
-   * @param {string} url URL de l'image
-   * @return {HTMLElement}
+   * @param {string} title dynamic title's images
+   * @return {HTMLDivElement}
    */
   buildDOM(title) {
     // DOM creation
