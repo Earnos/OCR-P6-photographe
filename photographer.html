@@ -13,7 +13,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
+    <header id="header">
       <a
         href="index.html"
         alt="Fisheye home page"
@@ -44,14 +44,16 @@
       aria-label="Contact Me"
       aria-labelledby="2"
     >
-      <div class="modal">
-        <header>
+      <div class="modal" aria-labelledby="coordonnees">
+        <header id="modal-header">
           <h2>Contactez-moi</h2>
           <img
             title="close-modal"
+            id="close-modal"
             alt="Close contact form"
             src="assets/icons/close.svg"
             onclick="closeModal()"
+            tabindex="0"
           />
         </header>
         <form action="" id="form">
@@ -60,13 +62,16 @@
             <input
               aria-label="First name"
               aria-labelledby="3"
+              aria-required="true"
               title="Prénom"
               name="first-name"
+              id="first-name"
             />
             <label for="last-name">Nom</label>
             <input
               aria-label="Last Name"
               aria-labelledby="5"
+              aria-required="true"
               title="Nom"
               name="last-name"
             />
@@ -74,6 +79,7 @@
             <input
               aria-label="Email"
               aria-labelledby="7"
+              aria-required="true"
               title="e-mail"
               name="email"
             />

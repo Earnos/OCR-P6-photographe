@@ -30,17 +30,6 @@ function mediaTemplate(data) {
   getSumOf(data, price, likes)
   // filter menu element
   getDropDownMenu()
-  // switch (selectedFilter) {
-  //   case 'Popularité':
-  //     selectedFilter.textContent == "Popularité" ? data[1].sort((a, b) => {a.likes - b.likes}) : null
-  //     break;
-  //   case 'Date':
-  //     selectedFilter.textContent == "Date" ? data[1].sort((a, b) => {a.date - b.date}) : null
-  //   break
-  //   case 'Titre':
-  //     selectedFilter.textContent == "Titre" ? data[1].sort((a) => return a.title) : null
-  //     break;
-  //   default:
 
   // display media dom element via this template
   data[1].forEach((media) => {
@@ -183,5 +172,18 @@ function getSumOf(data, likes) {
 
 function sortBy(typeSort, dataToSort) {
   let dataSorted = dataToSort
+
+  // switch (selectedFilter) {
+  //   case 'Popularité':
+  //     selectedFilter.textContent == "Popularité" ? data[1].sort((a, b) => {a.likes - b.likes}) : null
+  //     break;
+  //   case 'Date':
+  //     selectedFilter.textContent == "Date" ? data[1].sort((a, b) => {a.date - b.date}) : null
+  //   break
+  //   case 'Titre':
+  //     selectedFilter.textContent == "Titre" ? data[1].sort((a) => return a.title) : null
+  //     break;
+  //   default:
+
   return dataSorted
 }

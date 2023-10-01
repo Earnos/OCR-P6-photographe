@@ -16,29 +16,34 @@ function getDropDownMenu() {
   filterContainer.innerHTML = `
   <p>Trier par</p>
   <div class="dropdown">
-    <div class="select"  aria-controls="menu" tabindex="0">
+    <div class="select"  aria-controls="menu" tabindex="0"
+     aria-label="choix du mode de tri" aria-expanded="false" aria-haspopup="true">
     <span class="selected">Popularité</span>
     <div class="caret"></div>
     </div>
-    <ul class="menu" role="menu" aria-labelledby="menubutton"> 
-    <li role="menuitem" class="active">Popularité</li>
+    <ul class="menu" role="menu" aria-labelledby="menu du filtre"> 
+    <li role="menuitem" class="active" tabindex="1" aria-current="page" >Popularité</li>
     <hr/>
-    <li role="menuitem">Date</li>
+    <li role="menuitem" tabindex="2">Date</li>
     <hr/>
-    <li role="menuitem">Titre</li>
+    <li role="menuitem" tabindex="3">Titre</li>
     </ul>
     </div>
     `
   // <li class="active" role="menuitem" >Popularité</li>
 
   const dropdown = document.querySelector(".dropdown")
-
   const select = dropdown.querySelector(".select")
   const caret = dropdown.querySelector(".caret")
   const menu = dropdown.querySelector(".menu")
   const options = dropdown.querySelectorAll(".menu li")
   const selected = dropdown.querySelector(".selected")
 
+  select.addEventListener("keyup", (e) => {
+    if (e.keyCode === "13") {
+      document.querySelector(".select").click()
+    }
+  })
   select.addEventListener("click", () => {
     select.classList.toggle("select-clicked")
     caret.classList.toggle("caret-rotate")

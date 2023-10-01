@@ -1,10 +1,27 @@
 function displayModal() {
   const modal = document.getElementById("contact_modal")
+  const main = document.getElementById("main")
+  const header = document.getElementById("header")
+  const firstInput = document.getElementById("first-name")
+  //const closeModal = document.getElementById("close-modal")
+
+  main.setAttribute("aria-hidden", "true")
+  header.setAttribute("aria-hidden", "true")
+  modal.setAttribute("aria-hidden", "false")
+
   modal.style.display = "block"
+  firstInput.focus()
 }
 
 function closeModal() {
   const modal = document.getElementById("contact_modal")
+  const main = document.getElementById("main")
+  const header = document.getElementById("header")
+
+  main.setAttribute("aria-hidden", "false")
+  header.setAttribute("aria-hidden", "false")
+  modal.setAttribute("aria-hidden", "true")
+
   modal.style.display = "none"
 }
 

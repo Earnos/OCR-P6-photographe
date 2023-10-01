@@ -9,8 +9,8 @@ class Lightbox {
     this.imageContainer = this.element.getElementsByTagName("img")[0]
     document.body.appendChild(this.element)
     this.show(url)
+    //this.loadImage()
     this.pictures = document.querySelectorAll(".media-picture")
-    //this.loadImage(media)
     // close by escape keyboard's button
     this.onKeyUp = this.onKeyUp.bind(this)
     document.addEventListener("keyup", this.onKeyUp)
@@ -29,6 +29,18 @@ class Lightbox {
       this.getImgWithArrows(e)
     })
   }
+
+  // loadImage() {
+  //   const image = new Image()
+  //   const container = this.element.querySelector(".lightbox-container")
+  //   const loader = document.createElement("div")
+  //   loader.classList.add("lightbox-loader")
+  //   container.appendChild(loader)
+  //   image.onload = function () {
+  //     container.removeChild(loader)
+  //     container.appendChild(image)
+  //   }
+  // }
 
   // place la bonne image dans la ligthbox
   show(url) {
@@ -59,17 +71,6 @@ class Lightbox {
     }
   }
 
-  // loadImage(media) {
-  //   const image = new Image()
-  //   const container = this.element.querySelector(".lightbox-container")
-  //   const loader = document.createElement("div")
-  //   loader.classList.add("lightbox-loader")
-  //   container.appendChild(loader)
-  //   image.onload = function () {
-  //     container.removeChild(loader)
-  //     container.appendChild(image)
-  //   }
-  // }
   /**
    *
    * @param {KeyboardEvent} e
