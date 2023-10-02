@@ -22,6 +22,8 @@ function mediaTemplate(data) {
   mediaContainer.setAttribute("id", "media-container")
   photosContainer.appendChild(mediaContainer)
 
+  // Close modal form by press Escape
+  closeModalWithEscape()
   // Get dynamic name for form title
   getFormNameTitle(name)
   // recup form's value

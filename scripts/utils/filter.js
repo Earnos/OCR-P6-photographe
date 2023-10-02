@@ -39,15 +39,15 @@ function getDropDownMenu() {
   const options = dropdown.querySelectorAll(".menu li")
   const selected = dropdown.querySelector(".selected")
 
-  select.addEventListener("keyup", (e) => {
-    if (e.keyCode === "13") {
-      document.querySelector(".select").click()
-    }
-  })
   select.addEventListener("click", () => {
     select.classList.toggle("select-clicked")
     caret.classList.toggle("caret-rotate")
     menu.classList.toggle("menu-open")
+  })
+  dropdown.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      document.querySelector(".select").click()
+    }
   })
   // loop on all options elements
   options.forEach((option) => {

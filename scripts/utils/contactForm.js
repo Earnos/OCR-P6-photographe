@@ -3,7 +3,6 @@ function displayModal() {
   const main = document.getElementById("main")
   const header = document.getElementById("header")
   const firstInput = document.getElementById("first-name")
-  //const closeModal = document.getElementById("close-modal")
 
   main.setAttribute("aria-hidden", "true")
   header.setAttribute("aria-hidden", "true")
@@ -42,5 +41,14 @@ function getFormValues() {
     console.log(firstName, lastName, Email, message)
 
     return false
+  })
+}
+
+function closeModalWithEscape() {
+  const modal = document.getElementById("contact_modal")
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modal.style.display = "none"
+    }
   })
 }
