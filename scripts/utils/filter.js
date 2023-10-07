@@ -22,11 +22,11 @@ function getDropDownMenu() {
     <div class="caret"></div>
     </div>
     <ul class="menu" role="menu" aria-labelledby="menu du filtre"> 
-    <li role="menuitem" class="active" tabindex="1" aria-current="page" >Popularité</li>
+    <li role="menuitem" class="active" tabindex="0" aria-current="page" >Popularité</li>
     <hr/>
-    <li role="menuitem" tabindex="2">Date</li>
+    <li role="menuitem" tabindex="0">Date</li>
     <hr/>
-    <li role="menuitem" tabindex="3">Titre</li>
+    <li role="menuitem" tabindex="0">Titre</li>
     </ul>
     </div>
     `

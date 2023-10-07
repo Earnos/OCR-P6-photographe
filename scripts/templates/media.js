@@ -32,6 +32,8 @@ function mediaTemplate(data) {
   getSumOf(data, price, likes)
   // filter menu element
   getDropDownMenu()
+  // Open lightbox by Enter key
+  //openLightboxWithKeyboard()
 
   // display media dom element via this template
   data[1].forEach((media) => {
@@ -39,14 +41,6 @@ function mediaTemplate(data) {
     mediaContainer.appendChild(article)
   })
 
-  // Filter menu sort
-  const pictures = document.querySelectorAll(".media-picture")
-  const selectedFilter = document.querySelector(".selected")
-  selectedFilter.textContent == "Popularité"
-    ? data[1].sort((a, b) => {
-        a.likes - b.likes
-      })
-    : null
   /**
    *
    * photographer's page media DOM element creation
@@ -54,14 +48,14 @@ function mediaTemplate(data) {
    */
   function getMediasDOM(media) {
     const article = document.createElement("article")
-    const imageligthBoxLink = document.createElement("a")
+    const imageligthBoxContainer = document.createElement("span")
     const img = document.createElement("img")
     const video = document.createElement("video")
     const infosMedia = document.createElement("div")
 
+    img.setAttribute("tabindex", "0")
     video.setAttribute("class", "media-video")
-    imageligthBoxLink.setAttribute("class", "media-link")
-    imageligthBoxLink.setAttribute("href", " ")
+    imageligthBoxContainer.setAttribute("class", "img-span")
     article.setAttribute("class", "media-article")
     infosMedia.setAttribute("class", "infos-media")
 
@@ -70,7 +64,7 @@ function mediaTemplate(data) {
     const photoTitle = document.createElement("p")
     photoTitle.textContent = media.title
     photoTitle.setAttribute("class", "media-photo-title")
-    imageligthBoxLink.appendChild(img)
+    imageligthBoxContainer.appendChild(img)
 
     // Display images or videos
     const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
@@ -88,21 +82,21 @@ function mediaTemplate(data) {
       video.autoplay = false
       video.controls = true
       video.muted = false
-      imageligthBoxLink.removeChild(img)
-      imageligthBoxLink.appendChild(video)
-      imageligthBoxLink.style.cursor = "default"
-      imageligthBoxLink.removeAttribute("href")
+      imageligthBoxContainer.removeChild(img)
+      imageligthBoxContainer.appendChild(video)
+      imageligthBoxContainer.style.cursor = "default"
+      imageligthBoxContainer.removeAttribute("href")
     } else {
       return null
     }
 
-    //////////////////////////////////////////
     // Execute lightbox
     //////////////////////////////////////////
     img.addEventListener("click", (e) => {
       e.preventDefault()
       //selectionne les images dans l'html (DOM) et compare via l'index de l'image courante
       const currentElement = e.target
+      console.log(mediaVideo)
       let mediaElements =
         currentElement.parentElement.parentElement.parentElement
       let currentImgIndex = null
@@ -116,8 +110,16 @@ function mediaTemplate(data) {
         data,
         currentImgIndex,
         mediaPhoto,
-        media.title
+        media.title,
+        mediaVideo
       )
+    })
+    // open lightbox with Enter key
+    img.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        console.log("enter press !")
+        e.target.click()
+      }
     })
 
     // Add Likes on media card ticket infos
@@ -137,7 +139,7 @@ function mediaTemplate(data) {
       let increment = (likes.textContent = currentNumber + 1 + " " + "❤️")
     })
     //imageligthBoxLink.appendChild(img)
-    article.appendChild(imageligthBoxLink)
+    article.appendChild(imageligthBoxContainer)
     infosMedia.appendChild(photoTitle)
     article.appendChild(infosMedia)
     infosMedia.appendChild(likes)
@@ -173,6 +175,9 @@ function getSumOf(data, likes) {
 }
 
 function sortBy(typeSort, dataToSort) {
+  const pictures = document.querySelectorAll(".media-picture")
+  const selectedFilter = document.querySelector(".selected")
+
   let dataSorted = dataToSort
 
   // switch (selectedFilter) {
@@ -186,6 +191,13 @@ function sortBy(typeSort, dataToSort) {
   //     selectedFilter.textContent == "Titre" ? data[1].sort((a) => return a.title) : null
   //     break;
   //   default:
+
+  // Filter menu sort
+  selectedFilter.textContent == "Popularité"
+    ? data[1].sort((a, b) => {
+        a.likes - b.likes
+      })
+    : null
 
   return dataSorted
 }

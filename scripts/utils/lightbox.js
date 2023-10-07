@@ -2,13 +2,17 @@
  * @property {HTMLElement} element
  */
 class Lightbox {
-  constructor(data, index, url, title) {
+  constructor(data, index, url, title, video) {
     this.data = data
+    console.log(data)
     this.currentIndex = index
     this.element = this.buildDOM(title)
     this.imageContainer = this.element.getElementsByTagName("img")[0]
+    this.videoContainer = document.getElementsByTagName("video")[0]
+    console.log(this.videoContainer)
+    console.log(video)
     document.body.appendChild(this.element)
-    this.show(url)
+    this.show(url, video)
     //this.loadImage()
     this.pictures = document.querySelectorAll(".media-picture")
     // close by escape keyboard's button
@@ -30,21 +34,17 @@ class Lightbox {
     })
   }
 
-  // loadImage() {
-  //   const image = new Image()
-  //   const container = this.element.querySelector(".lightbox-container")
-  //   const loader = document.createElement("div")
-  //   loader.classList.add("lightbox-loader")
-  //   container.appendChild(loader)
-  //   image.onload = function () {
-  //     container.removeChild(loader)
-  //     container.appendChild(image)
-  //   }
-  // }
-
   // place la bonne image dans la ligthbox
-  show(url) {
+  show(url, video) {
+    // const hasImageProperty = this.imageContainer.hasOwnProperty("image")
+    // const hasVideoProperty = this.videoContainer.hasOwnProperty("video")
+    // const lightboxContainer = document.querySelector(".lightbox-container")
+    // lightboxContainer.appendChild(this.pictures)
+    // if (hasImageProperty) {
     this.imageContainer.src = url
+    // } else if (hasVideoProperty) {
+    //   this.videoContainer.src = video
+    // }
   }
 
   previousImg() {
@@ -108,7 +108,7 @@ class Lightbox {
     dom.innerHTML = `<button class="lightbox-closed" type="button" title="close"></button>
       <button class="next-btn" type="button" title="next"></button>
       <button  class="previous-btn" type="button" title="previous"></button>
-      <div class="lightbox-container"><img src="" alt="???"></img></div>
+      <div class="lightbox-container"><img src="" alt="${title}"></img></div>
       <div class="lightbox-infos">
           ${title}
       </div>`
@@ -119,3 +119,17 @@ class Lightbox {
   }
 }
 //<div class="lightbox-loader"></div>
+//<img src="" alt="${title}"></img>
+//<video src="" alt="${title}"></video>
+
+// loadImage() {
+//   const image = new Image()
+//   const container = this.element.querySelector(".lightbox-container")
+//   const loader = document.createElement("div")
+//   loader.classList.add("lightbox-loader")
+//   container.appendChild(loader)
+//   image.onload = function () {
+//     container.removeChild(loader)
+//     container.appendChild(image)
+//   }
+// }

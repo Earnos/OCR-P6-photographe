@@ -10,7 +10,7 @@
 
 .photograph-header {
   background-color: #ffffff;
-  height: 300px;
+  height: auto;
   margin: 2% 7% 5% 7%;
   display: flex;
   justify-content: space-around;
@@ -277,6 +277,7 @@ textarea {
   top: 0;
   left: 0;
   border-radius: 2%;
+  cursor: pointer;
 }
 
 .media-video {
@@ -321,7 +322,7 @@ textarea {
 @media (max-width: 1000px) {
   .photograph-header {
     flex-direction: column-reverse;
-    margin: 20% 0 30% 0;
+    margin: 10% 0 20% 0;
   }
   .photograph-header > img,
   .photograph-header .header-btn {
@@ -374,6 +375,9 @@ textarea {
     width: 91%;
     height: 4em;
   }
+  .media-article {
+    margin-bottom: 0;
+  }
 }
 @media (max-width: 700px) {
   textarea {
@@ -409,5 +413,10 @@ textarea {
   textarea {
     width: 90%;
     height: 4em;
+  }
+}
+@media (max-width: 440px) {
+  .media-article {
+    width: 100vw;
   }
 }
