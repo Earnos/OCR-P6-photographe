@@ -1,4 +1,4 @@
-function getDropDownMenu() {
+function getDropDownMenu(data, getMediasDOM) {
   // DOM filter container
   const photosContainer = document.querySelector("#main")
   const mediaContainer = document.getElementById("media-container")
@@ -18,7 +18,7 @@ function getDropDownMenu() {
   <div class="dropdown">
     <div class="select"  aria-controls="menu" tabindex="0"
      aria-label="choix du mode de tri" aria-expanded="false" aria-haspopup="true">
-    <span class="selected">Popularité</span>
+    <span class="selected">selection...</span>
     <div class="caret"></div>
     </div>
     <ul class="menu" role="menu" aria-labelledby="menu du filtre"> 
@@ -61,6 +61,12 @@ function getDropDownMenu() {
         option.classList.remove("active")
       })
       option.classList.add("active")
+      mediaContainer.innerHTML = ""
+      let dataSorted = sortBy(data, option.innerText)
+      data.forEach((media) => {
+        article = getMediasDOM(media)
+        mediaContainer.appendChild(article)
+      })
     })
   })
 }

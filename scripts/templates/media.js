@@ -31,9 +31,9 @@ function mediaTemplate(data) {
   // get and display infos ticket
   getSumOf(data, price, likes)
   // filter menu element
-  getDropDownMenu()
-  // Open lightbox by Enter key
-  //openLightboxWithKeyboard()
+  getDropDownMenu(data[1], getMediasDOM)
+  // Firlter sort function
+  sortBy(data[1])
 
   // display media dom element via this template
   data[1].forEach((media) => {
@@ -133,12 +133,9 @@ function mediaTemplate(data) {
 
     // likes or dislikes
     let currentNumber = media.likes
-    //let isIncreased = true
     likes.addEventListener("click", () => {
-      //let decrement = (likes.textContent = currentNumber - 1 + " " + "❤️")
       let increment = (likes.textContent = currentNumber + 1 + " " + "❤️")
     })
-    //imageligthBoxLink.appendChild(img)
     article.appendChild(imageligthBoxContainer)
     infosMedia.appendChild(photoTitle)
     article.appendChild(infosMedia)
@@ -174,30 +171,38 @@ function getSumOf(data, likes) {
   photographerMain.appendChild(ticketInfos)
 }
 
-function sortBy(typeSort, dataToSort) {
-  const pictures = document.querySelectorAll(".media-picture")
-  const selectedFilter = document.querySelector(".selected")
+function sortBy(dataToSort, typeSort) {
+  if (typeSort == undefined) {
+    return dataToSort
+  }
+  let dataSorted
 
-  let dataSorted = dataToSort
-
-  // switch (selectedFilter) {
-  //   case 'Popularité':
-  //     selectedFilter.textContent == "Popularité" ? data[1].sort((a, b) => {a.likes - b.likes}) : null
-  //     break;
-  //   case 'Date':
-  //     selectedFilter.textContent == "Date" ? data[1].sort((a, b) => {a.date - b.date}) : null
-  //   break
-  //   case 'Titre':
-  //     selectedFilter.textContent == "Titre" ? data[1].sort((a) => return a.title) : null
-  //     break;
-  //   default:
-
-  // Filter menu sort
-  selectedFilter.textContent == "Popularité"
-    ? data[1].sort((a, b) => {
-        a.likes - b.likes
+  switch (typeSort) {
+    case "Popularité":
+      dataSorted = dataToSort.sort((a, b) => {
+        return b.likes - a.likes
       })
-    : null
+      break
+    case "Date":
+      dataSorted = dataToSort.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date)
+      })
+      break
+    case "Titre":
+      dataSorted = dataToSort.sort((a, b) => {
+        //return a.title - b.title
+        if (a.title < b.title) {
+          return -1
+        }
+        if (a.title > b.title) {
+          return 1
+        }
+        return 0
+      })
+      break
+    default:
+  }
+  console.log(dataSorted)
 
   return dataSorted
 }
