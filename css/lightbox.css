@@ -83,14 +83,6 @@
     brightness(100%) contrast(94%);
 }
 
-.lightbox-loader {
-  width: 48px;
-  height: 48px;
-  opacity: 0.5;
-  position: absolute;
-  background: url(../assets/icons/loader.svg) center center no-repeat;
-}
-
 .lightbox-infos {
   color: #901c1c;
   font-size: 24px;

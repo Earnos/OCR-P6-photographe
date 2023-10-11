@@ -1,3 +1,8 @@
+/**
+ * Dropdownmenu DOM creation and call sort media's function
+ * @param {array} data
+ * @param {function} getMediasDOM
+ */
 function getDropDownMenu(data, getMediasDOM) {
   // DOM filter container
   const photosContainer = document.querySelector("#main")
@@ -12,7 +17,6 @@ function getDropDownMenu(data, getMediasDOM) {
   photosContainer.insertBefore(filterContainer, mediaContainer)
 
   // DropDown menu
-
   filterContainer.innerHTML = `
   <p>Trier par</p>
   <div class="dropdown">
@@ -30,7 +34,6 @@ function getDropDownMenu(data, getMediasDOM) {
     </ul>
     </div>
     `
-  // <li class="active" role="menuitem" >Popularité</li>
 
   const dropdown = document.querySelector(".dropdown")
   const select = dropdown.querySelector(".select")

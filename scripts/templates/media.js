@@ -5,9 +5,9 @@
  */
 function mediaTemplate(data) {
   // photographer's data
-  const { name, id } = data[0]
+  const { name } = data[0]
   // media's data
-  const [{ title, image, likes, date, price }] = data[1]
+  const [{ likes, price }] = data[1]
 
   // transform photographer's name same as photo name's folders
   const arr = name
@@ -35,14 +35,13 @@ function mediaTemplate(data) {
   // Firlter sort function
   sortBy(data[1])
 
-  // display media dom element via this template
+  // display media photo/video dom's element via this template
   data[1].forEach((media) => {
     article = getMediasDOM(media)
     mediaContainer.appendChild(article)
   })
 
   /**
-   *
    * photographer's page media DOM element creation
    * @returns {HTMLDivElement}
    */
@@ -66,7 +65,7 @@ function mediaTemplate(data) {
     photoTitle.setAttribute("class", "media-photo-title")
     imageligthBoxContainer.appendChild(img)
 
-    // Display images or videos
+    // Display images or videos in DOM
     const mediaVideo = `assets/images/${photoByFolderName}/${media.video}`
     const mediaPhoto = `assets/images/${photoByFolderName}/${media.image}`
     const hasImageProperty = media.hasOwnProperty("image")
@@ -91,17 +90,16 @@ function mediaTemplate(data) {
     }
 
     // Execute lightbox
-    //////////////////////////////////////////
+    //=================
     img.addEventListener("click", (e) => {
       e.preventDefault()
-      //selectionne les images dans l'html (DOM) et compare via l'index de l'image courante
+      //Compare html dom tag element img's index with current element
       const currentElement = e.target
-      console.log(mediaVideo)
       let mediaElements =
         currentElement.parentElement.parentElement.parentElement
       let currentImgIndex = null
       Array.from(mediaElements.children).forEach((p, index) => {
-        // si le src == currentElement.src get index
+        // if src == currentElement.src get index
         if (p.firstChild.firstChild.src == currentElement.src) {
           currentImgIndex = index
         }
@@ -110,10 +108,10 @@ function mediaTemplate(data) {
         data,
         currentImgIndex,
         mediaPhoto,
-        media.title,
-        mediaVideo
+        media.title
       )
     })
+
     // open lightbox with Enter key
     img.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
@@ -131,11 +129,12 @@ function mediaTemplate(data) {
       allLikes.value++
     })
 
-    // likes or dislikes
+    // incremental like
     let currentNumber = media.likes
     likes.addEventListener("click", () => {
       let increment = (likes.textContent = currentNumber + 1 + " " + "❤️")
     })
+
     article.appendChild(imageligthBoxContainer)
     infosMedia.appendChild(photoTitle)
     article.appendChild(infosMedia)
@@ -171,6 +170,11 @@ function getSumOf(data, likes) {
   photographerMain.appendChild(ticketInfos)
 }
 
+/**
+ * sort function for media dropdown menu
+ * @param {array} dataToSort
+ * @returns {array}
+ */
 function sortBy(dataToSort, typeSort) {
   if (typeSort == undefined) {
     return dataToSort

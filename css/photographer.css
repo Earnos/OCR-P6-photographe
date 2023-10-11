@@ -154,7 +154,7 @@ textarea {
   margin: 0 2em 0 0;
 }
 
-/*DropDown Menu 2eme version*/
+/*DropDown Menu */
 .dropdown {
   min-width: 15em;
   position: relative;
@@ -176,13 +176,6 @@ textarea {
   cursor: pointer;
   transition: background 0.3s;
 }
-
-/* clicked styles */
-
-/* .select:focus {
-  background: #d3573c;
-  color: #000000;
-} */
 
 .caret {
   width: 0;
