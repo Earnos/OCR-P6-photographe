@@ -115,7 +115,6 @@ function mediaTemplate(data) {
     // open lightbox with Enter key
     img.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        console.log("enter press !")
         e.target.click()
       }
     })

@@ -81,7 +81,7 @@
   margin: auto;
   position: fixed;
   margin-left: 35%;
-  margin-top: 2%;
+  margin-top: -4%;
 }
 
 .modal header {
@@ -95,7 +95,7 @@
 }
 
 .modal header h2 {
-  font-size: 3em;
+  font-size: 2.5em;
   font-weight: 500;
   margin: 3%;
 }
@@ -109,7 +109,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 28px;
 }
 
 form div {
@@ -131,7 +131,7 @@ form input {
 }
 
 textarea {
-  height: 6em;
+  height: 4em;
   width: 91%;
   font-size: 1.6em;
   font-weight: 500;
@@ -337,7 +337,7 @@ textarea {
   }
 }
 /* form media */
-@media (min-width: 700px) and (max-width: 1500px) {
+@media (min-width: 701px) and (max-width: 1500px) {
   .modal header h2 {
     font-size: 2.7em;
   }
@@ -346,13 +346,14 @@ textarea {
     width: 35px;
   }
   #form label {
-    font-size: 30px;
+    font-size: 25px;
   }
 }
 @media (max-width: 1200px) {
   .modal {
     min-width: 50%;
     margin-left: 22%;
+    margin-top: -5%;
   }
   .modal header h2 {
     font-size: 2.3em;
@@ -378,7 +379,7 @@ textarea {
     height: 2.2em;
   }
   .modal {
-    margin-left: 12%;
+    margin-left: 20%;
     padding: 28px;
   }
   .modal header h2 {
@@ -411,5 +412,29 @@ textarea {
 @media (max-width: 440px) {
   .media-article {
     width: 100vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .contact_button {
+    margin-top: 5%;
+  }
+  .photograph-header > div > h2 {
+    margin: 5%;
+    font-size: 3em;
+    text-align: center;
+  }
+  .photograph-header:nth-child(1) {
+    text-align: center;
+  }
+  .filter-container {
+    margin-left: 3%;
+  }
+  .filter-container > p {
+    text-align: center;
+    margin: 0 0 0 0;
+  }
+  .modal {
+    margin-left: 7%;
   }
 }

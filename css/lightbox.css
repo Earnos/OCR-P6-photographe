@@ -84,9 +84,9 @@
 }
 
 .lightbox-infos {
+  text-align: center;
   color: #901c1c;
   font-size: 24px;
-  margin: 0 0 0 8em;
   padding-bottom: 2em;
 }
 
@@ -96,5 +96,11 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .lightbox-infos {
+    margin-top: -8%;
   }
 }

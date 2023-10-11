@@ -46,7 +46,7 @@ function getFormValues() {
 
 function closeModalWithEscape() {
   const modal = document.getElementById("contact_modal")
-  window.addEventListener("keydown", (e) => {
+  modal.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       modal.style.display = "none"
       const contactBtn = document.getElementById("contact-btn")
