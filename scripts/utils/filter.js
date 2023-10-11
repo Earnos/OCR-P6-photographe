@@ -19,20 +19,20 @@ function getDropDownMenu(data, getMediasDOM) {
   // DropDown menu
   filterContainer.innerHTML = `
   <p>Trier par</p>
-  <div class="dropdown">
-    <div class="select"  aria-controls="menu" tabindex="0"
-     aria-label="choix du mode de tri" aria-expanded="false" aria-haspopup="true">
-    <span class="selected">selection...</span>
-    <div class="caret"></div>
+  <div class="dropdown" role="menu" aria-controls="menu">
+    <div class="select" role="menubar" tabindex="0"
+    aria-label="choix du mode de tri" aria-expanded="false" aria-haspopup="true">
+      <span class="selected" aria-current="true">selection...</span>
+      <div class="caret"></div>
     </div>
-    <ul class="menu" role="menu" aria-labelledby="menu du filtre"> 
-    <li role="menuitem" class="active" tabindex="0" aria-current="page" >Popularité</li>
-    <hr/>
+    <ul class="menu" aria-labelledby="menu du filtre"> 
+    <li role="menuitem" class="active" tabindex="0" aria-current="true" >Popularité</li>
+    <hr>
     <li role="menuitem" tabindex="0">Date</li>
-    <hr/>
+    <hr>
     <li role="menuitem" tabindex="0">Titre</li>
     </ul>
-    </div>
+  </div>
     `
 
   const dropdown = document.querySelector(".dropdown")
@@ -54,7 +54,7 @@ function getDropDownMenu(data, getMediasDOM) {
   })
   // loop on all options elements
   options.forEach((option) => {
-    option.addEventListener("click", () => {
+    option.addEventListener("click", (e) => {
       selected.innerText = option.innerText
       select.classList.remove("select-clicked")
       caret.classList.remove("caret-rotate")
@@ -70,6 +70,13 @@ function getDropDownMenu(data, getMediasDOM) {
         article = getMediasDOM(media)
         mediaContainer.appendChild(article)
       })
+    })
+    option.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        option.click()
+        document.querySelector(".select").click()
+        select.focus()
+      }
     })
   })
 }

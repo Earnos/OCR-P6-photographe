@@ -9,7 +9,6 @@ class Lightbox {
     this.imageContainer = this.element.getElementsByTagName("img")[0]
     this.videoContainer = document.getElementsByTagName("video")[0]
     this.imageTitle = this.element.getElementsByClassName("lightbox-infos")[0]
-    console.log(this.imageTitle)
     document.body.appendChild(this.element)
     this.show(url, title)
     this.pictures = document.querySelectorAll(".media-picture")

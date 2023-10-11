@@ -49,6 +49,8 @@ function closeModalWithEscape() {
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       modal.style.display = "none"
+      const contactBtn = document.getElementById("contact-btn")
+      contactBtn.focus()
     }
   })
 }

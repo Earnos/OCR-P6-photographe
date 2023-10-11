@@ -14,11 +14,7 @@
   </head>
   <body>
     <header id="header">
-      <a
-        href="index.html"
-        alt="Fisheye home page"
-        aria-label="link to home page"
-        tabindex="0"
+      <a href="index.html" aria-label="link to home page" tabindex="0"
         ><img
           src="assets/images/logo.png"
           class="logo"
@@ -30,7 +26,8 @@
         <div class="header-btn">
           <button
             type="button"
-            alt="Contact Me"
+            id="contact-btn"
+            aria-label="Contact Me"
             class="contact_button"
             onclick="displayModal()"
           >
@@ -39,13 +36,8 @@
         </div>
       </div>
     </main>
-    <div
-      id="contact_modal"
-      role="dialog"
-      aria-label="Contact Me"
-      aria-labelledby="2"
-    >
-      <div class="modal" aria-labelledby="coordonnees">
+    <div id="contact_modal" role="dialog" aria-label="Contact Me">
+      <div class="modal" aria-label="coordonnees">
         <header id="modal-header">
           <h2>Contactez-moi</h2>
           <img
@@ -57,12 +49,12 @@
             tabindex="0"
           />
         </header>
-        <form action="" id="form">
+        <form id="form">
           <div>
             <label for="first-name">Prénom</label>
             <input
               aria-label="First name"
-              aria-labelledby="3"
+              aria-labelledby="first-name"
               aria-required="true"
               title="Prénom"
               name="first-name"
@@ -71,27 +63,30 @@
             <label for="last-name">Nom</label>
             <input
               aria-label="Last Name"
-              aria-labelledby="5"
+              aria-labelledby="last-name"
               aria-required="true"
               title="Nom"
               name="last-name"
+              id="last-name"
             />
             <label for="email">Email</label>
             <input
               aria-label="Email"
-              aria-labelledby="7"
+              aria-labelledby="email"
               aria-required="true"
               title="e-mail"
               name="email"
+              id="email"
             />
             <label for="message">Votre message</label>
             <textarea
               minlength="20"
               maxlength="200"
               aria-label="Your message"
-              aria-labelledby="9"
+              aria-labelledby="message"
               title="message"
               name="message"
+              id="message"
               required
             >
             </textarea>

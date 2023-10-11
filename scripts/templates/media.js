@@ -206,7 +206,5 @@ function sortBy(dataToSort, typeSort) {
       break
     default:
   }
-  console.log(dataSorted)
-
   return dataSorted
 }
